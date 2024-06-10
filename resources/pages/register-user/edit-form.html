@@ -1,0 +1,371 @@
+<!-- Edit Form Modal -->
+<div class="modal fade" id="edit-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Usuário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Modal Body -->
+        <form id="form-register" method="post" enctype="multipart/form-data">
+          <input id="id-edit" name="userId" type="hidden" value="" />
+
+          <div class="form-group">
+            <label for="fullname-edit">Nome completo</label>
+            <input id="fullname-edit" name="fullname" type="text" class="form-control"/>
+          </div>
+
+
+          <div class="form-group">
+            <label for="username-edit">Nome de usuário</label>
+            <input id="username-edit" name="username" autocomplete="off" type="text" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label for="email-edit">Email</label>
+            <input id="email-edit" name="email" autocomplete="off" type="text" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="cpf-edit">CPF</label>
+            <input id="cpf-edit" name="cpf" type="text" class="form-control" />
+          </div>
+        </form>
+
+        <!-- End Modal Body -->
+      </div>
+      <div class="modal-footer  d-flex justify-content-between px-5">
+        <button id="edit-button" type="submit" class="btn btn-primary">
+          Editar
+        </button>
+
+        <button id="change-password-button" type="submit" class="btn btn-danger">
+          Gerar nova senha
+        </button>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Fill edit form on click edit button-->
+<script>
+  const editButtons = document.querySelectorAll(".edit-button");
+  editButtons.forEach((btn) =>
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const response = await getUserInfo(btn.dataset.userId);
+
+      if (!response.success) {
+        await Swal.fire({
+          title: data.message, 
+          icon: "error",
+          position: "center",
+        }).then(() => window.location.reload());
+      }
+
+      updateEditForm(response.data);
+    })
+  );
+
+
+
+  async function getUserInfo(id) {
+    try {
+      const res = await fetch("/api/user/" + id);
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      return {
+        success: false,
+        message: "Erro na conexão. Tente novamente.",
+      }
+    }
+  }
+
+
+
+  function updateEditForm(data) {
+    const id = document.querySelector("#id-edit");
+    const fullname = document.querySelector("#fullname-edit");
+    const username = document.querySelector("#username-edit");
+    const email = document.querySelector("#email-edit");
+    const cpf = document.querySelector("#cpf-edit");
+
+
+
+    let cpfMask = "###.###.###-##"; 
+    let cpfmaskedArray = cpfMask.split("");
+
+
+    for (let i = 0; i < data.cpf.length; i++) {
+      if (cpfmaskedArray.indexOf("#") !== -1) {
+        cpfmaskedArray.splice(cpfmaskedArray.indexOf("#"), 1, data.cpf[i]);
+      }
+    }
+
+    id.value = data.id;
+    fullname.value = data.fullname;
+    username.value = data.username;
+    email.value = data.email;
+    cpf.value = cpfmaskedArray.join("");
+  }
+</script>
+
+
+
+<!--Apply Masks on edit form fields-->
+<script>
+  //------------------- Fullname -------------------//
+  document.getElementById("fullname-edit").addEventListener("input", function (){
+    if (this.value.length > 255) {
+        this.value = this.value.substring(0 , 255);
+    }
+    fullnameMask(this);
+  });
+
+  //------------------- Username -------------------//
+  document.getElementById("username-edit").addEventListener("input", function (){
+    if (this.value.length > 20) {
+        this.value = this.value.substring(0 , 20);
+    }
+    usernameMask(this);
+  });
+
+  //-------------------- Email ---------------------//
+  document.getElementById("email-edit").addEventListener("input", function (){
+    if (this.value.length > 255) {
+        this.value = this.value.substring(0 , 255);
+    }
+    emailMask(this);
+});
+
+
+  //----------------------- CPF -----------------------//
+  var pasteCpfEdit = false;
+
+  document.getElementById("cpf-edit").addEventListener("paste" , function (){
+      pasteCpfEdit = true;
+  });
+
+  document.getElementById("cpf-edit").addEventListener("input", function () {
+      let mask = "###.###.###-##"; 
+      let cursorPosition = this.selectionStart;
+      let beforeCriticalChars = cursorPosition === 3 || cursorPosition === 7 || cursorPosition === 11;
+      let afterCriticalChars = cursorPosition === 4 || cursorPosition === 8 || cursorPosition === 12;
+      let backspaceCodition  = lastKeyPressed === "Backspace";
+      let criticalBackspaceCodition = beforeCriticalChars && backspaceCodition 
+
+      let maskedArray = mask.split("");
+
+
+      let digitsOnly = criticalBackspaceCodition?
+                      (this.value.slice(0, cursorPosition - 1) + this.value.slice(cursorPosition)).replace(/[^0-9]/g, ""):
+                      this.value.replace(/[^0-9]/g, "");
+
+
+      for (let i = 0; i < digitsOnly.length; i++) {
+          if (maskedArray.indexOf("#") !== -1) {
+              maskedArray.splice(maskedArray.indexOf("#"), 1, digitsOnly[i]);
+          }
+      }
+
+      let newValue = "";
+
+      if (maskedArray.indexOf("#") === -1) {
+          newValue = this.value =  maskedArray.join("");
+      } else {
+          newValue = this.value = maskedArray.slice(0, maskedArray.indexOf("#")).join("");
+      }
+
+
+      if(pasteCpfEdit){
+          this.setSelectionRange(newValue.length, newValue.length);
+          return;
+      }
+      if (criticalBackspaceCodition) {
+          this.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
+          return;
+      }
+      if (backspaceCodition) {
+          this.setSelectionRange(cursorPosition, cursorPosition);
+          return;
+      }
+      if (beforeCriticalChars || afterCriticalChars) {
+          this.setSelectionRange(cursorPosition + 1, cursorPosition + 1);
+          return;
+      } 
+      this.setSelectionRange(cursorPosition, cursorPosition);
+
+  });
+
+</script>
+
+
+
+<!--Submit edit form -->
+<script>
+  const editButton = document.querySelector("#edit-button");
+  editButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    Swal.fire({
+      title: "Editando usuário...",
+      didOpen: async () => {
+        Swal.showLoading();
+        document.getElementById("edit-user-modal").style.display = "none";
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
+
+    const response = await editFields();
+
+    if (response.success) {
+      Swal.fire({
+        title: response.message,
+        icon: "success",
+      }).then(() => {
+        window.location.reload();
+      });
+    } else {
+      Swal.fire({
+        title: "Falha ao editar usuário!",
+        html: response.message,
+        icon: "error",
+      }).then(() => {
+        document.getElementById("edit-user-modal").style.display = "block";
+      });
+    }
+  });
+
+
+  async function editFields() {
+
+    try {
+      const form = document.getElementById("form-register");
+      const formData = new FormData(form);
+ 
+      const res = await fetch("/api/user/general", {
+        method: "POST",
+        body: formData,
+      });
+  
+      return await res.json();
+    } catch (error) {
+      return {
+        success: false,
+        message: "Erro na conexão. Tente novamente."
+      }
+    }
+
+  }
+
+</script>
+
+
+
+
+<!--Submit generate new password form-->
+<script>
+  const passwordButton = document.querySelector("#change-password-button");
+
+  passwordButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    Swal.fire({
+      title: "Gerando nova senha...",
+      didOpen: async () => {
+        Swal.showLoading();
+        document.getElementById("edit-user-modal").style.display = "none";
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
+
+    const response = await changePassword();
+
+    if (response.success) {
+      const clipboardHtml = `
+        <div class="d-flex justify-content-center align-items-center px-5"> 
+          <input 
+            id="temp-pass" 
+            class="message form-control border-secondary text-center mr-1" 
+            style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
+            type="disable" 
+            value="${response.data.password}"
+          >
+          <button   
+            id="copy-pass-edit" 
+            type="button"
+            class="copy-button btn btn-outline-secondary"
+          >
+            <i 
+              class="fas fa-copy"
+            >
+            </i>
+          </button>
+        </div>
+      `;
+
+      Swal.fire({
+        title: response.message,
+        html: clipboardHtml,
+        icon: "success",
+      }).then(() =>  {
+        window.location.reload()
+      });
+
+
+      const alert = Swal.getPopup();
+      const copyButton = alert.querySelector(".copy-button");
+      const message = alert.querySelector(".message");
+
+      copyButton.addEventListener("click", () => {
+        message.select();
+        message.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(message.value);
+      });
+
+    } else {
+      Swal.fire({
+        title: "Falha ao gerar nova senha!",
+        html: response.message,
+        icon: "error",
+      }).then(() => {
+        document.getElementById("edit-user-modal").style.display = "block";
+      });
+    }
+  });
+
+
+  async function changePassword() {
+    try {
+      const id = document.querySelector("#id-edit");
+      const res = await fetch("/api/user/random-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: id.value,
+        }),
+      });
+
+      return await res.json();
+    } catch (err) {
+      return {
+        success: false,
+        message: "Erro na conexão. Tente novamente."
+      }
+    }
+  }
+
+</script>

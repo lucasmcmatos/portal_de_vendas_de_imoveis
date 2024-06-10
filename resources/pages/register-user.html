@@ -1,0 +1,112 @@
+<h1 class="h3 my-4 text-gray-800">Usuários</h1>
+
+<!-- Users Datatable -->
+
+<div class="card shadow mb-4">
+  <div
+    class="card-header py-3 d-flex justify-content-between align-items-center position-relative"
+    style="overflow: hidden"
+  >
+    <h6 class="m-0 font-weight-bold text-primary">Lista de usuários</h6>
+    {{userForm}}
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th style="text-align: center">Foto</th>
+            <th style="text-align: center">Nome</th>
+            <th style="text-align: center">Email</th>
+            <th style="text-align: center">CPF</th>
+            <th style="text-align: center">Ações</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th style="text-align: center">Foto</th>
+            <th style="text-align: center">Nome</th>
+            <th style="text-align: center">Email</th>
+            <th style="text-align: center">CPF</th>
+            <th style="text-align: center">Ações</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          {{userList}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{{editForm}}
+
+
+
+
+<!--Submit Delete User Form-->
+<script>
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach((btn) =>
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      Swal.fire({
+        text: "Você tem certeza que deseja excluir esse usuário?",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Confirmar",
+        position: "center"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const data = await removeUser(btn.dataset.userId);
+
+          Swal.fire({
+            title: data.message,
+            text: "",
+            icon: `${data.success == true ? "success" : "error"}`,
+            position: "center",
+          }).then((result) => {
+            if(result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        } 
+      });
+    })
+  );
+
+
+  async function removeUser(id) {
+    try {
+        const response = await fetch("/api/user/delete", {
+          method: "POST",
+          body: JSON.stringify({ id }),
+        });
+
+        const data = await response.json();
+        return data;
+
+    } catch(error) {
+      const data = {
+        success: false,
+         message: "Erro na conexão. Tente novamente."
+      };
+      return data;
+    }
+  }
+
+</script>
+
+
+
+
+
+
+

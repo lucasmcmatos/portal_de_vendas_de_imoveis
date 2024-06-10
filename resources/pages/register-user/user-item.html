@@ -1,0 +1,37 @@
+<!--Users table body-->
+<tr>
+  <td style="text-align: center; box-sizing: border-box;">
+    <img
+      class="img-profile rounded-circle"
+      style="width: 40px; height: 40px"
+      src="/profile/{{photo}}"
+    />
+  </td>
+  <td style="text-align: center">{{fullname}}</td>
+  <td style="text-align: center">{{email}}</td>
+  <td style="text-align: center">{{cpf}}</td>
+  <td style="text-align: center; box-sizing: border-box;">
+    <div style="display: flex; justify-content: center; gap: 1vw">
+      <button 
+        type="button"
+        class="delete-button btn" 
+        data-placement="bottom"
+        title="Excluir usuário" 
+        data-user-id="{{id}}"
+      >
+        <i class="fas fa-trash-alt"></i>
+      </button>
+      <button
+        type="button"
+        class="edit-button btn"
+        data-toggle="modal"
+        data-placement="bottom"
+        title="Editar usuário"
+        data-target="#edit-user-modal"
+        data-user-id="{{id}}"
+      >
+        <i class="fas fa-pencil-alt"></i>
+      </button>
+    </div>
+  </td>
+</tr>

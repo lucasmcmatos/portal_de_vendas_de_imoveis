@@ -1,0 +1,167 @@
+<h1 class="h3 my-4 text-gray-800">Notícias</h1>
+
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3 d-flex justify-content-between align-items-center position-relative"
+    style="overflow: hidden">
+    <h6 class="m-0 font-weight-bold text-primary">Lista de notícias</h6>
+    <a id="add-news" type="button" data-placement="top" title="Cadastrar notícia"
+      class="btn btn-primary btn-circle position-absolute" style="right: 2%;" href="/news/register">
+      <i class="fas fa-fw fa-newspaper"></i>
+    </a>
+  </div>
+
+  <div class="card-body">
+    <div class="d-flex flex-column align-items-center px-md-5">{{newsList}}</div>
+  </div>
+
+
+
+<!-- Featured -->
+<script>
+  let featuredButtons = document.querySelectorAll(".featured-button");
+
+  featuredButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      let form = button.querySelector(".featured-form");
+      let id = form.querySelector(".news-id");
+      let checkbox = form.querySelector(".featured");
+
+
+      Swal.fire({
+        text: `Deseja ${checkbox.checked ? "remover notícia dos" : "adicionar notícia aos"} destaques?`,
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Confirmar",
+        position: "center"
+      }).then(async (result) => {
+
+        if (result.isConfirmed) {
+
+          Swal.fire({
+            title: `${checkbox.checked ? "Removendo notícia dos" : "adicionando notícia aos"} destaques...`,
+            didOpen: async () => {
+              Swal.showLoading();
+            },
+            allowOutsideClick: () => !Swal.isLoading(),
+          });
+
+
+          const data = await editFeatured(id, checkbox);
+
+          Swal.fire({
+            title: data.message,
+            text: "",
+            icon: `${data.success == true ? "success" : "error"}`,
+            position: "center",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        }
+      });
+
+    });
+
+  });
+
+
+
+
+
+  async function editFeatured(id, checkbox) {
+
+    let checked = checkbox.checked ? "false" : "true";
+
+    try {
+
+      let response = await fetch("/api/news/featured", {
+        method: "POST",
+        body: JSON.stringify({ newsId: id.value, featured: checked }),
+      });
+
+      const data = await response.json();
+      return data;
+    }
+
+    catch(error){
+      const data = {
+        success: false,
+        message: "Erro na conexão. Tente novamente."
+      };
+      return data;
+    }
+  }
+</script>
+
+
+
+  <!--Submit Delete News Form-->
+  <script>
+    const deleteButtons = document.querySelectorAll(".delete-button");
+
+    deleteButtons.forEach((btn) =>
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+
+        Swal.fire({
+          text: "Você tem certeza que deseja excluir essa notícia?",
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+          confirmButtonText: "Confirmar",
+          position: "center"
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+
+            Swal.fire({
+              title: "Exluindo notícia...",
+              didOpen: async () => {
+                Swal.showLoading();
+              },
+              allowOutsideClick: () => !Swal.isLoading(),
+            });
+  
+
+            const data = await removeNews(btn.dataset.newsId);
+            Swal.fire({
+              title: data.message,
+              text: "",
+              icon: `${data.success == true ? "success" : "error"}`,
+              position: "center",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
+          }
+        });
+
+      })
+    );
+
+
+
+    async function removeNews(id) {
+
+      try {
+        const response = await fetch("/api/news/delete", {
+          method: "POST",
+          body: JSON.stringify({ id }),
+        });
+
+        const data = await response.json();
+        return data;
+
+      } catch (error) {
+        const data = {
+          success: false,
+          message: "Erro na conexão. Tente novamente."
+        };
+        return data;
+      }
+    }
+  </script>
