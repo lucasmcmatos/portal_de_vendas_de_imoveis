@@ -7,12 +7,80 @@ require_once(__DIR__ . "/../../Core/UserValidation.php");
 require_once(__DIR__ . "/../../Session/Login.php");
 
 use \Exception;
+use \DateTime;
 use \App\Model\Entity\User as UserEntity;
 use \App\Core\UserValidation;
 use \App\Session\Login;
 
-class User
-{
+
+
+class User {
+
+    
+    public static function register($request){
+
+        try {
+             
+            $formFields = $request->getPostVars();
+
+
+            $formFields["cpf"] = preg_replace("/[^0-9]/", "", $formFields["cpf"] ?? "");
+
+
+            $validation = UserValidation::validateForm([
+                "firstName" => $formFields["firstName"],
+                "lastName" => $formFields["lastName"],
+                "email" => $formFields["email"],
+                "birthDate" => $formFields["birthDate"],
+                "password" => $formFields["password"],
+                "cpf" => $formFields["cpf"],
+                "phone" => $formFields["phone"],
+                "instagram" => $formFields["instagram"],
+                "whatsapp" => $formFields["whatsapp"]
+            ]);
+
+
+            if (!$validation["success"]) {
+                return json_encode($validation);
+            }
+
+
+            $objUser = new UserEntity();
+            $objUser->firstName = ($formFields["firstName"] ?? "");
+            $objUser->lastName = ($formFields["lastName"] ?? "");
+            $objUser->email = $formFields["email"] ?? "";
+            $objUser->birthDate = $formFields["birthDate"] ?? "";
+            $objUser->password = password_hash($formFields["password"] ?? "", PASSWORD_ARGON2ID);
+            $objUser->cpf = $formFields["cpf"] ?? "";
+            $objUser->phone = $formFields["phone"] ?? "";
+            $objUser->instagram = $formFields["instagram"] ?? "";
+            $objUser->whatsapp = $formFields["whatsapp"] ?? "";
+            $objUser->registerDate = (new DateTime())->format("Y-m-d H:i:s");
+            $objUser->photo = "undraw-profile.svg";
+            $objUser->privilege = 0;
+
+
+            $success = $objUser->insert();
+
+            if (!$success) {
+                return json_encode([
+                    "success" => false,
+                    "message" => "Erro na conexão. Tente novamente."
+                ]);
+            }
+
+            return json_encode([
+                "success" => true,
+                "message" => "Conta criada com sucesso!",
+            ]);
+        } catch (Exception $e) {
+            return json_encode(["success" => false, "message" => "Algo inesperado ocorreu. Tente novamente."]);
+        }
+    }
+
+
+
+
 
     public static function get($request, $id){
         try {
@@ -236,65 +304,6 @@ class User
     }
 
 
-    public static function register($request){
-
-        try {
-            $formFields = $request->getPostVars();
-
-            $formFields["cpf"] = preg_replace("/[^0-9]/", "", $formFields["cpf"]);
-
-            $result = UserValidation::validateForm([
-                "fullname" => $formFields["fullname"],
-                "username" => $formFields["username"],
-                "email" => $formFields["email"],
-                "cpf" => $formFields["cpf"],
-            ]);
-
-            if (!$result["success"]) {
-                return $result;
-            }
-
-
-            $random_password = self::str_rand(30);
-
-            $objUser = new UserEntity();
-            $objUser->fullname = $formFields["fullname"] ?? "";
-            $objUser->username = $formFields["username"] ?? "";
-            $objUser->email = $formFields["email"] ?? "";
-            $objUser->cpf = $formFields["cpf"] ?? "";
-            $objUser->date = date("Y-m-d H:i:s", time());
-            $objUser->pass = password_hash($random_password, PASSWORD_ARGON2ID);
-            // Set default photo
-            $objUser->photo = "undraw_profile.svg";
-
-
-            if (!self::sendEmail($objUser->email, $random_password)) {
-                return [
-                    "success" => false,
-                    "message" => "Problema ao enviar email com senha temporária.",
-                ];
-            }
-
-
-            $success = $objUser->insertUser();
-
-            if (!$success) {
-                return [
-                    "success" => false,
-                    "message" => "Erro na conexão. Tente novamente."
-                ];
-            }
-
-
-            return [
-                "success" => true,
-                "message" => "Usuário cadastrado com sucesso!",
-                "data" => ["password" => $random_password]
-            ];
-        } catch (Exception $e) {
-            return ["success" => false, "message" => "Algo inesperado ocorreu. Tente novamente."];
-        }
-    }
 
 
     private static function str_rand(int $length = 64){

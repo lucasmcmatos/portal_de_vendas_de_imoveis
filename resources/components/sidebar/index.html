@@ -1,0 +1,62 @@
+<!-- Sidebar -->
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #DCCCC3;">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+
+        
+        <div class="sidebar-brand-icon">
+            <img src="../img/navbarIconame.svg" width="50px">
+        </div>
+        <div class="sidebar-brand-text mx-1">
+            
+            <img src="../img/navbarIcoimg.svg" width="130px">
+        </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-home" style="color: #7d725f;"></i>
+            <span style="color: #7d725f;">Home</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading" style="color: #937f74a8;">
+        Interface
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo" >
+            <i class="fas fa-fw fa-bullhorn"  style="color: #937f74a8;"></i>
+            <span  style="color: #937f74a8;">Anúncios</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="buttons.html"  style="color: #937f74a8;">Anúncios da Plataforma</a>
+                {{userItems}}
+            </div>
+        </div>
+    </li>
+
+    {{modeItems}}
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+
+<!-- End of Sidebar -->

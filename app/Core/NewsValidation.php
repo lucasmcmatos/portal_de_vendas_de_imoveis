@@ -85,7 +85,6 @@ class NewsValidation {
 
 
 
-
     private static function title($title) {
          $alphaRegex = "/[^\sa-zA-Z0-9àáâãéêíóôõúÀÁÂÃÉÊÍÓÔÕÚçÇ']/";
          if (preg_match($alphaRegex, $title)){
@@ -99,7 +98,6 @@ class NewsValidation {
 
         return ["success" => true, "message" => ""];
     }
-
 
 
 
@@ -120,7 +118,6 @@ class NewsValidation {
 
 
 
-
     private static function body($body) {
         //implement validation;
         return ["success" => true, "message" => ""];
@@ -128,7 +125,6 @@ class NewsValidation {
 
 
 
-    
     private static function schedule($schedule) {
 
 
@@ -167,7 +163,6 @@ class NewsValidation {
 
 
 
-
     public static function author($author) {
         $authorRegex = "/^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/";
 
@@ -177,6 +172,7 @@ class NewsValidation {
 
         return ["success" => true, "message" => ""];
     }
+
 
 
     public static function visible($visible) {
@@ -189,9 +185,6 @@ class NewsValidation {
     }
 
 
-
-
-    
 
     public static function validateForm($form) {
 

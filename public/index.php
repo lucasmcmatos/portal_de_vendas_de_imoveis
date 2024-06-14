@@ -1,6 +1,23 @@
 <?php
 
-//require_once(__DIR__ . "/../app/Controller/Pages/Home.php");
+
+require_once(__DIR__ . "/../app/Http/Request.php");
+require_once(__DIR__ . "/../app/Http/Response.php");
+require_once(__DIR__ . "/../app/Http/Router.php");
+
+
+require_once(__DIR__ . "/../app/Http/Middleware/Queue.php");
+require_once(__DIR__ . "/../app/Http/Middleware/Maintenance.php");
+require_once(__DIR__ . "/../app/Http/Middleware/RequireLogout.php");
+require_once(__DIR__ . "/../app/Http/Middleware/RequireLogin.php");
+require_once(__DIR__ . "/../app/Http/Middleware/RequireAdmin.php");
+
+
+require_once(__DIR__ . "/../app/Core/Database.php");
+require_once(__DIR__ . "/../app/Utils/View.php");
+
+
+require_once(__DIR__ . "/../app/Controller/Pages/Register.php");
 require_once(__DIR__ . "/../app/Controller/Pages/Login.php");
 require_once(__DIR__ . "/../app/Controller/Pages/RegisterUser.php");
 require_once(__DIR__ . "/../app/Controller/Pages/NotFound.php");
@@ -9,17 +26,6 @@ require_once(__DIR__ . "/../app/Controller/Pages/News.php");
 require_once(__DIR__ . "/../app/Controller/Pages/RegisterNews.php");
 require_once(__DIR__ . "/../app/Controller/Pages/Preview.php");
 
-require_once(__DIR__ . "/../app/Http/Request.php");
-require_once(__DIR__ . "/../app/Http/Response.php");
-require_once(__DIR__ . "/../app/Http/Router.php");
-require_once(__DIR__ . "/../app/Core/Database.php");
-require_once(__DIR__ . "/../app/Utils/View.php");
-
-require_once(__DIR__ . "/../app/Http/Middleware/Queue.php");
-require_once(__DIR__ . "/../app/Http/Middleware/Maintenance.php");
-require_once(__DIR__ . "/../app/Http/Middleware/RequireLogout.php");
-require_once(__DIR__ . "/../app/Http/Middleware/RequireLogin.php");
-require_once(__DIR__ . "/../app/Http/Middleware/RequireAdmin.php");
 
 require_once(__DIR__ . "/../app/Controller/Api/User.php");
 require_once(__DIR__ . "/../app/Controller/Api/News.php");
@@ -27,49 +33,72 @@ require_once(__DIR__ . "/../app/Controller/Api/News.php");
 
 require_once(__DIR__ . "/../app/Controller/Images/User.php");
 require_once(__DIR__ . "/../app/Controller/Images/News.php");
-//require_once(__DIR__ . "/../app/Api/General.php");
 
 
-//use \App\Controller\Pages\Home;
 
 
-use \App\Http\Router;
+
 use \App\Http\Response;
-use \App\Core\Database;
-use \App\Utils\View;
+use \App\Http\Router;
+
 use \App\Http\Middleware\Queue as MiddlewareQueue;
 
+use \App\Core\Database;
+use \App\Utils\View;
+
+
+use \App\Controller\Pages\Register;
 use \App\Controller\Pages\Login;
 use \App\Controller\Pages\RegisterUser;
 use \App\Controller\Pages\NotFound;
 use \App\Controller\Pages\Settings;
 use \App\Controller\Pages\News;
-use \App\Controller\Pages\RegisterNews;
-use \App\Controller\Pages\Preview;
+
 
 use \App\Controller\Api\User as UserApi;
 use \App\Controller\Api\News as NewsApi;
-//use \App\Api\General as GeneralApi;
+
 
 use \App\Controller\Images\User as UserImage;
 use \App\Controller\Images\News as NewsImage;
+
 
 
 define("URL", "http://localhost");
 
 
 
-//Reanalisar
 View::init([
     "URL" => URL,
 ]);
 
 
+
 //Mudar para variáveis de ambiente
-Database::config("localhost", "imobile_on", "root", "2L93c02m7");
+Database::config("localhost", "imobile_on", "root", "Batatafrita0132@");
+
 
 
 $objRouter = new Router(URL);
+
+
+
+
+$objRouter->get("/register",  [
+    "middlewares" => [
+        "requireLogout",
+    ],
+    function () {
+    return new Response(200, Register::render());
+}]);
+
+
+ 
+
+
+
+
+
 
 
 $objRouter->get("/",  [
@@ -127,15 +156,26 @@ $objRouter->get("/settings",  [
 
 // API SECTION
 
-// USER
-$objRouter->post("/api/user/register",  [
+
+
+
+$objRouter->post("/api/register",  [
     "middlewares" => [
-        "requireLogin",
-        "requireAdmin",
+        "requireLogout",
     ],
     function ($request){
-    return new Response(200, UserApi::register($request), "application/json");
+        return new Response(200, UserApi::register($request), "application/json");
 }]);
+
+// USER
+// $objRouter->post("/api/user/register",  [
+//     "middlewares" => [
+//         "requireLogin",
+//         "requireAdmin",
+//     ],
+//     function ($request){
+//     return new Response(200, UserApi::register($request), "application/json");
+// }]);
 
 
 

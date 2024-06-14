@@ -12,14 +12,11 @@ use \App\Session\Login as SessionLogin;
 class Login {
 
     public static function render($errorMessage = null) {
-        $status = !is_null($errorMessage) ? View::render("pages/login/alert", [
-            "errorMessage" => $errorMessage,
-        ]) : "";
-
         return View::render("pages/login", [
-            "status" => $status
         ]);
     }
+
+
 
     public static function setLogin($request) {
         $postVars = $request->getPostVars();

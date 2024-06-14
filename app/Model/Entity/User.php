@@ -5,39 +5,53 @@ namespace App\Model\Entity;
 require_once(__DIR__ . "/../../Core/Database.php");
 
 use \App\Core\Database;
-use Exception;
 use PDOException;
+
+
 
 class User
 {
-    public $id;
-    public $username;
-    public $fullname;
-    public $pass;
-    public $cpf;
-    public $email;
-    public $photo;
-    public $date;
-    public $privilege;
+    public int $id;
+    public string $firstName;
+    public string $lastName;
+    public string $email;
+    public string $birthDate;
+    public string $password;
+    public string $cpf;
+    public string $phone;
+    public string $instagram;
+    public string $whatsapp;
+    public string $registerDate;
+    public string $photo;
+    public int $privilege;
+    public int $salaryRange;
+    public int $maritalStatus;
+    public int $children;
+    public int $automobiles;
+    public int $blocked;
 
 
 
-    public function insertUser(){
+    public function insert(){
         try {
             $success = (new Database("user"))->insert([
-                "username" => $this->username,
-                "fullname" => $this->fullname,
-                "pass" => $this->pass,
-                "cpf" => $this->cpf,
+                "firstName" => $this->firstName,
+                "lastName" => $this->lastName,
                 "email" => $this->email,
+                "birthDate" => $this->birthDate,
+                "password" => $this->password,
+                "cpf" => $this->cpf,
+                "phone" => $this->phone,
+                "instagram" => $this->instagram,
+                "whatsapp" => $this->whatsapp,
+                "registerDate" => $this->registerDate,
                 "photo" => $this->photo,
-                "date" => $this->date,
-                "privilege" => 0,
+                "privilege" => $this->privilege,
             ]);
 
             return [
                 "success" => $success,
-                "message" => ""
+                "message" => "Usuário cadastrado com sucesso!"
             ];
         } catch (PDOException $err) {
             return [
@@ -49,6 +63,9 @@ class User
 
 
 
+
+
+    
     public function deleteUser(){
         try {
             $success = (new Database("user"))->delete("id=?", [$this->id]);
