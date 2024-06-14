@@ -72,7 +72,7 @@
     function fullnameMask(input) {
       const cursorPosition = input.selectionStart;
   
-      const alphaRegex = /[^\sa-zA-ZàáâãéêíóôõúÀÁÂÃÉÊÍÓÔÕÚçÇ']|^\s+$|^'/g;
+      const alphaRegex = /[^a-\szA-ZàáâãéêíóôõúÀÁÂÃÉÊÍÓÔÕÚçÇ']|^\s+$|^'/g;
   
       if (alphaRegex.test(input.value)) {
         input.value = input.value.replace(alphaRegex, "");

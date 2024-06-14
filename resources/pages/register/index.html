@@ -21,12 +21,12 @@
     <link href="/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
 
     <style>
-        #registerBtn {
+        #register-user-button {
             transition: background-color 0.3s, border-color 0.3s, color 0.3s;
             /* Adiciona transição suave */
         }
 
-        #registerBtn:hover {
+        #register-user-button:hover {
             background-color: #6c5e55;
             /* Nova cor de fundo no hover */
             border-color: #6c5e55;
@@ -220,7 +220,7 @@
             const form = document.querySelector("#register-user-form");
             const formData = new FormData(form);
 
-            //try {
+            try {
                 const response = await fetch("/api/register", {
                     method: "POST",
                     body: formData,
@@ -229,13 +229,13 @@
                 const data = await response.json();
                 return data;
 
-           /* } catch (error) {
+            } catch (error) {
                 const data = {
                     success: false,
                     message: error//"Erro na conexão. Tente novamente."
                 };
                 return data;
-            }*/
+            }
         }
 
     </script>

@@ -75,7 +75,7 @@ View::init([
 
 
 //Mudar para variáveis de ambiente
-Database::config("localhost", "imobile_on", "root", "Senha aqui");
+Database::config("localhost", "imobile_on", "root", "Batatafrita0132@");
 
 
 
@@ -93,15 +93,9 @@ $objRouter->get("/register",  [
 }]);
 
 
- 
 
 
-
-
-
-
-
-$objRouter->get("/",  [
+$objRouter->get("/login",  [
     "middlewares" => [
         "requireLogout",
     ],
@@ -110,15 +104,33 @@ $objRouter->get("/",  [
 }]);
 
 
-$objRouter->post("/",  [
-    function ($request){
-    return new Response(200, Login::setLogin($request), "application/json");
-}]);
 
-$objRouter->get("/logout",  [
-    function ($request){
-    return new Response(200, Login::setLogout($request));
-}]);
+ 
+
+
+
+
+
+
+
+// $objRouter->get("/",  [
+//     "middlewares" => [
+//         "requireLogout",
+//     ],
+//     function () {
+//     return new Response(200, Login::render());
+// }]);
+
+
+// $objRouter->post("/",  [
+//     function ($request){
+//     return new Response(200, Login::setLogin($request), "application/json");
+// }]);
+
+// $objRouter->get("/logout",  [
+//     function ($request){
+//     return new Response(200, Login::setLogout($request));
+// }]);
 
 
 // $objRouter->get("/home",  [    

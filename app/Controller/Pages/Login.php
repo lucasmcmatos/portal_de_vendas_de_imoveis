@@ -9,10 +9,12 @@ use \App\Utils\View;
 use \App\Model\Entity\User;
 use \App\Session\Login as SessionLogin;
 
+
+
 class Login {
 
     public static function render($errorMessage = null) {
-        return View::render("pages/login", [
+        return View::render("pages/login/index", [
         ]);
     }
 
@@ -29,14 +31,14 @@ class Login {
         if (!$result["success"]) {
             return json_encode(["success" => false, "message" => "Falha ao efetuar login"]);
         }
-
+  
         $objUser = $result["value"];
 
         if (!($objUser instanceof User)) {
             return json_encode(["success" => false, "message" => "Email e/ou senha inválidos"]);
         }
 
-        if(!password_verify($password, $objUser->pass)) {
+        if(!password_verify($password, $objUser->password)) {
             return json_encode(["success" => false, "message" => "Email e/ou senha inválidos"]);
         }
 

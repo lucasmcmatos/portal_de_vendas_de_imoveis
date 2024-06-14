@@ -37,7 +37,7 @@ class UserValidation {
             "selector" => "birthDate",
             "validate" => "\App\Core\UserValidation::birthDate",
             "required" => true,
-            "unique" => true,
+            "unique" => false,
         ],
 
         "password" => [
@@ -45,7 +45,7 @@ class UserValidation {
             "selector" => "password",
             "validate" => "\App\Core\UserValidation::password",
             "required" => true,
-            "unique" => true,
+            "unique" => false,
         ],
 
         "cpf" => [
@@ -61,30 +61,30 @@ class UserValidation {
             "selector" => "phone",
             "validate" => "\App\Core\UserValidation::phone",
             "required" => true,
-            "unique" => true,
+            "unique" => false,
         ],
 
         "instagram" => [
             "label" => "instagram",
             "selector" => "instagram",
             "validate" => "\App\Core\UserValidation::instagram",
-            "required" => true,
-            "unique" => true,
+            "required" => false,
+            "unique" => false,
         ],
 
         "whatsapp" => [
             "label" => "whatsapp",
             "selector" => "whatsapp",
             "validate" => "\App\Core\UserValidation::whatsapp",
-            "required" => true,
-            "unique" => true,
+            "required" => false,
+            "unique" => false,
         ],
  
         "photo" => [
             "label" => "foto",
             "selector" => "photo",
             "validate" => "\App\Core\UserValidation::photo",
-            "required" => true,
+            "required" => false,
             "unique" => false,
         ]
     ];
