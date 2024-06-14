@@ -75,7 +75,7 @@ View::init([
 
 
 //Mudar para variáveis de ambiente
-Database::config("localhost", "imobile_on", "root", "Batatafrita0132@");
+Database::config("localhost", "imobile_on", "root", "Senha aqui");
 
 
 
