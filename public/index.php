@@ -66,7 +66,7 @@ View::init([
 
 
 //Mudar para variáveis de ambiente
-Database::config("localhost", "sgc", "root", "Senhaaqui");
+Database::config("localhost", "imobile_on", "root", "2L93c02m7");
 
 
 $objRouter = new Router(URL);
@@ -207,9 +207,9 @@ $objRouter->get("/api/user/{id}", [
 
 //Render News Page
 $objRouter->get("/news",  [
-    "middlewares" => [
-        "requireLogin",
-    ],
+    // "middlewares" => [
+    //     "requireLogin",
+    // ],
     function (){
     return new Response(200, News::render());
 }]);
