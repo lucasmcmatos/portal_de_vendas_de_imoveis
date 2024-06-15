@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Pages;
 
+require_once(__DIR__ . "/../../Model/Entity/User.php");
 require_once(__DIR__."/../../Utils/View.php");
 require_once(__DIR__."/../../Session/Login.php");
 require_once(__DIR__."/Page.php");
@@ -17,7 +18,6 @@ class Login {
         return View::render("pages/login/index", [
         ]);
     }
-
 
 
     public static function setLogin($request) {

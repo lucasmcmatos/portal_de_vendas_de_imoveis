@@ -276,20 +276,23 @@ class News {
             if (!$result["success"]){
                 return json_encode([
                     "success" => false,
-                    "message" => "Erro na conexão. Tente novamente",
+                    "message" => "Não foi possível carregar a notícia. Tente novamente mais tarde.",
                 ]);
             }
 
 
-            $objNews = $result["value"];
+            $news = $result["value"];
 
 
-            if (!$objNews) {
-                return json_encode([
+            if ($news->rowCount() == 0) {
+                return [
                     "success" => false,
-                    "message" => "Notícia não encontrada."
-                ]);
+                    "message"  =>  "Notícia não encontrada.",
+                ];
             }
+
+
+            $objNews = $news->fetchObject(NewsEntity::class);
 
 
             $date = (isset($objNews->date) && boolval($objNews->date)) ? new DateTime($objNews->date) : "";

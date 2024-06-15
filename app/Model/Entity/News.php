@@ -149,16 +149,9 @@ class News {
             if ($objNews = (new Database("news"))
                 ->select(["*"], "id=?", [$id])) {
                 
-                if ($objNews->rowCount() == 0) {
-                    return [
-                        "success" => false,
-                        "message"  =>  "Falha ao encontrar notícia.",
-                    ];
-                }
-                
                 return [
                     "success" => true,
-                    "value" => $objNews->fetchObject(self::class), 
+                    "value" => $objNews,
                     "message"  =>  "",
                 ];
             }

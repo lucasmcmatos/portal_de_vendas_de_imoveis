@@ -24,11 +24,11 @@ class User
     public string $registerDate;
     public string $photo;
     public int $privilege;
-    public int $salaryRange;
-    public int $maritalStatus;
-    public int $children;
-    public int $automobiles;
-    public int $blocked;
+    public ?int $salaryRange;
+    public ?int $maritalStatus;
+    public ?int $children;
+    public ?int $automobiles;
+    public ?int $blocked;
 
 
 
@@ -87,11 +87,11 @@ class User
     static public function getUsers(){
         try {
 
-            if($objUsers = (new Database("user"))->select()) {
+            if($UserObjectsList = (new Database("user"))->select()) {
                 return [
                     "success" => true,
                     "message" => "",
-                    "value" => $objUsers,
+                    "value" => $UserObjectsList ,
                 ];
 
             }
@@ -112,13 +112,15 @@ class User
 
     static public function getUserByIdentifier($value){
         try {
-            if($objUser = (new Database("user"))
-                ->select(["*"], "email=? OR username=?", [$value, $value])){
-                return [
-                    "success" => true,
-                    "message" => "",
-                    "value" => $objUser->fetchObject(self::class),
-                ];
+
+            if($UserObjectsList = (new Database("user"))
+                ->select(["*"], "email=? OR cpf=?", [$value, $value])){
+
+                    return [
+                        "success" => true,
+                        "message" => "",
+                        "value" => $UserObjectsList
+                    ];
             }
             
             return [
@@ -126,10 +128,10 @@ class User
                 "message" => "Falha ao encontrar usuário.",
             ];
             
-        } catch (PDOException $err) {
+        } catch (PDOException $error) {
             return [
                 "success" => false,
-                "message" => $err->getMessage(),
+                "message" => $error->getMessage(),
             ];
         }
     }
@@ -138,12 +140,12 @@ class User
 
     static public function getUserById($id){
         try {
-            if ($objUser = (new Database("user"))
+            if ($UserObjectsList  = (new Database("user"))
                 ->select(["*"], "id=?", [$id])) {
 
                 return [
                     "success" => true,
-                    "value" => $objUser->fetchObject(self::class),
+                    "value" => $UserObjectsList,
                     "message"  =>  "",
                 ];
             }

@@ -10,7 +10,7 @@ use \Exception;
 use \DateTime;
 use \App\Model\Entity\User as UserEntity;
 use \App\Core\UserValidation;
-use \App\Session\Login;
+use \App\Session\Login as SessionLogin;
 
 
 
@@ -74,11 +74,67 @@ class User {
                 "message" => "Conta criada com sucesso!",
             ]);
         } catch (Exception $e) {
-            return json_encode(["success" => false, "message" => "Algo inesperado ocorreu. Tente novamente."]);
+            return json_encode([
+                "success" => false, 
+                "message" => "Algo inesperado ocorreu. Tente novamente."
+            ]);
         }
     }
 
 
+
+    public static function login($request) {
+        try {
+            $postVars = $request->getPostVars();
+        
+            $identifier = $postVars["identifier"] ?? "";
+            $password = $postVars["password"] ?? "";
+    
+            $result = UserEntity::getUserByIdentifier($identifier);
+    
+            if (!$result["success"]) {
+                return json_encode([
+                    "success" => false, 
+                    "message" => "Erro na conexão. Tente novamente."]);
+            }
+      
+    
+            $userObjectsList = $result["value"];
+    
+    
+            if ($userObjectsList->rowCount() == 0) {
+                return [
+                    "success" => false,
+                    "message"  =>  "Email e/ou senha inválidos."
+                ];
+            }
+    
+    
+            $userObject = $userObjectsList->fetchObject(UserEntity::class);
+     
+            if(!password_verify($password, $userObject->password)) {
+                return json_encode([
+                    "success" => false, 
+                    "message" => "Email e/ou senha inválidos."
+                ]);
+            }
+    
+           // SessionLogin::login($userObject);
+    
+            return json_encode([
+                "success" => true, 
+                "message" => "Usuário autenticado!"
+            ]);
+
+        } catch(Exception $e) {
+            return json_encode([
+                "success" => false, 
+                "message" => "Algo inesperado ocorreu. Tente novamente."
+            ]);
+        }
+
+
+    }
 
 
 
@@ -207,7 +263,7 @@ class User {
     }
 
 
-    public static function editPassword($request){
+   /* public static function editPassword($request){
 
         try {
 
@@ -247,13 +303,13 @@ class User {
                 ];
             }
 
-            Login::logout();
+            SessionLogin::logout();
 
             return ["success" => true, "message" => "Senha alterada com sucesso!"];
         } catch (Exception $e) {
             return ["success" => false, "message" => "Algo inesperado ocorreu. Tente novamente."];
         }
-    }
+}*/
 
 
 

@@ -179,6 +179,16 @@ $objRouter->post("/api/register",  [
         return new Response(200, UserApi::register($request), "application/json");
 }]);
 
+
+$objRouter->post("/api/login",  [
+    "middlewares" => [
+        "requireLogout",
+    ],
+    function ($request){
+        return new Response(200, UserApi::login($request), "application/json");
+}]);
+
+
 // USER
 // $objRouter->post("/api/user/register",  [
 //     "middlewares" => [
@@ -202,14 +212,14 @@ $objRouter->post("/api/user/delete",  [
 
 
 
-$objRouter->post("/api/user/password", [
-    "middlewares" => [
-        "requireLogin"
-    ],
-    function ($request) {
-        return new Response(200, UserApi::editPassword($request), "application/json");
-    }
-]);
+// $objRouter->post("/api/user/password", [
+//     "middlewares" => [
+//         "requireLogin"
+//     ],
+//     function ($request) {
+//         return new Response(200, UserApi::editPassword($request), "application/json");
+//     }
+// ]);
 
 
 
