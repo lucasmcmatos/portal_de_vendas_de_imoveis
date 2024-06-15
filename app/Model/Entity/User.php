@@ -29,6 +29,7 @@ class User
     public ?int $children;
     public ?int $automobiles;
     public ?int $blocked;
+    public ?int $address;
 
 
 
