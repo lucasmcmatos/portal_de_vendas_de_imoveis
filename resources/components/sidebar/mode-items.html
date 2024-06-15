@@ -27,3 +27,38 @@
         </div>
     </div>
 </li>
+
+
+
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading" style="color: #474242;">
+    Moderação
+</div>
+
+
+<li class="nav-item">
+    <a class="nav-link" href="charts.html">
+        <i class="fas fa-fw fa-cog" style="color: #474242;"></i>
+        <span style="color: #474242;">Anúncios</span></a>
+</li>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+        aria-controls="collapsePages">
+        <i class="fas fa-fw fa-cog" style="color: #474242;"></i>
+        <span style="color: #474242;">Usuários</span>
+    </a>
+
+    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="login.html" style="color: #474242;">Usuários Comuns</a>
+            {{adminItems}}
+            <a class="collapse-item" href="register.html" style="color: #474242;">Usuários Moderadores</a>
+        </div>
+    </div>
+</li>

@@ -19,20 +19,23 @@ require_once(__DIR__ . "/../app/Utils/View.php");
 
 require_once(__DIR__ . "/../app/Controller/Pages/Register.php");
 require_once(__DIR__ . "/../app/Controller/Pages/Login.php");
-require_once(__DIR__ . "/../app/Controller/Pages/RegisterUser.php");
+require_once(__DIR__ . "/../app/Controller/Pages/Home.php");
+
+
+// require_once(__DIR__ . "/../app/Controller/Pages/RegisterUser.php");
 require_once(__DIR__ . "/../app/Controller/Pages/NotFound.php");
-require_once(__DIR__ . "/../app/Controller/Pages/Settings.php");
-require_once(__DIR__ . "/../app/Controller/Pages/News.php");
-require_once(__DIR__ . "/../app/Controller/Pages/RegisterNews.php");
-require_once(__DIR__ . "/../app/Controller/Pages/Preview.php");
+// require_once(__DIR__ . "/../app/Controller/Pages/Settings.php");
+// require_once(__DIR__ . "/../app/Controller/Pages/News.php");
+// require_once(__DIR__ . "/../app/Controller/Pages/RegisterNews.php");
+// require_once(__DIR__ . "/../app/Controller/Pages/Preview.php");
 
 
 require_once(__DIR__ . "/../app/Controller/Api/User.php");
-require_once(__DIR__ . "/../app/Controller/Api/News.php");
+// require_once(__DIR__ . "/../app/Controller/Api/News.php");
 
 
-require_once(__DIR__ . "/../app/Controller/Images/User.php");
-require_once(__DIR__ . "/../app/Controller/Images/News.php");
+// require_once(__DIR__ . "/../app/Controller/Images/User.php");
+// require_once(__DIR__ . "/../app/Controller/Images/News.php");
 
 
 
@@ -49,18 +52,19 @@ use \App\Utils\View;
 
 use \App\Controller\Pages\Register;
 use \App\Controller\Pages\Login;
-use \App\Controller\Pages\RegisterUser;
+use \App\Controller\Pages\Home;
+// use \App\Controller\Pages\RegisterUser;
 use \App\Controller\Pages\NotFound;
-use \App\Controller\Pages\Settings;
-use \App\Controller\Pages\News;
+// use \App\Controller\Pages\Settings;
+// use \App\Controller\Pages\News;
 
 
 use \App\Controller\Api\User as UserApi;
-use \App\Controller\Api\News as NewsApi;
+// use \App\Controller\Api\News as NewsApi;
 
 
-use \App\Controller\Images\User as UserImage;
-use \App\Controller\Images\News as NewsImage;
+// use \App\Controller\Images\User as UserImage;
+// use \App\Controller\Images\News as NewsImage;
 
 
 
@@ -105,6 +109,28 @@ $objRouter->get("/login",  [
 
 
 
+
+$objRouter->get("/",  [
+    "middlewares" => [
+        "requireLogout",
+    ],
+    function () {
+    return new Response(200, Home::render());
+}]);
+
+
+
+
+$objRouter->get("home",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function () {
+    return new Response(200, Home::render());
+}]);
+
+
+
  
 
 
@@ -142,24 +168,24 @@ $objRouter->get("/login",  [
 // }]);
 
 
-$objRouter->get("/register-user",  [
-    "middlewares" => [
-        "requireLogin",
-        "requireAdmin",
-    ],
-    function (){
-    return new Response(200, RegisterUser::render());
-}]);
+// $objRouter->get("/register-user",  [
+//     "middlewares" => [
+//         "requireLogin",
+//         "requireAdmin",
+//     ],
+//     function (){
+//     return new Response(200, RegisterUser::render());
+// }]);
 
 
 
-$objRouter->get("/settings",  [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function (){
-    return new Response(200, Settings::render());
-}]);
+// $objRouter->get("/settings",  [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function (){
+//     return new Response(200, Settings::render());
+// }]);
 
 
 
@@ -267,146 +293,146 @@ $objRouter->get("/api/user/{id}", [
 //------------------------- News Pages -------------------------//
 
 
-//Render News Page
-$objRouter->get("/news",  [
-    // "middlewares" => [
-    //     "requireLogin",
-    // ],
-    function (){
-    return new Response(200, News::render());
-}]);
+// //Render News Page
+// $objRouter->get("/news",  [
+//     // "middlewares" => [
+//     //     "requireLogin",
+//     // ],
+//     function (){
+//     return new Response(200, News::render());
+// }]);
 
 
 
 
 
 
-//-------------------------- News Api --------------------------//
+// //-------------------------- News Api --------------------------//
 
 
-//----------------- Extern ----------------//
+// //----------------- Extern ----------------//
 
-//Get All Available News
-$objRouter->get("/api/all-available-news",  [
-    function ($request){
-    return new Response(200, NewsApi::getAllAvailable($request), "application/json");
-}]);
-
-
-//Get Featured Available News
-$objRouter->get("/api/featured-available-news",  [
-    function ($request){
-    return new Response(200, NewsApi::getFeaturedAvailable($request), "application/json");
-}]);
+// //Get All Available News
+// $objRouter->get("/api/all-available-news",  [
+//     function ($request){
+//     return new Response(200, NewsApi::getAllAvailable($request), "application/json");
+// }]);
 
 
-
-//Get No Featured Available News
-$objRouter->get("/api/no-featured-available-news",  [
-    function ($request){
-    return new Response(200, NewsApi::getNoFeaturedAvailable($request), "application/json");
-}]);
+// //Get Featured Available News
+// $objRouter->get("/api/featured-available-news",  [
+//     function ($request){
+//     return new Response(200, NewsApi::getFeaturedAvailable($request), "application/json");
+// }]);
 
 
 
-//----------------- Intern ----------------//
-
-//Get All News 
-$objRouter->get("/api/all-news",  [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function ($request){
-    return new Response(200, NewsApi::getAll($request), "application/json");
-}]);
+// //Get No Featured Available News
+// $objRouter->get("/api/no-featured-available-news",  [
+//     function ($request){
+//     return new Response(200, NewsApi::getNoFeaturedAvailable($request), "application/json");
+// }]);
 
 
 
-//Register News
-$objRouter->post("/api/news/register",  [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function ($request){
-    return new Response(200, NewsApi::register($request), "application/json");
-}]);
+// //----------------- Intern ----------------//
 
-
-//Edit News
-$objRouter->post("/api/news/edit", [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function ($request){
-    return new Response(200, NewsApi::edit($request), "application/json");
-}]);
+// //Get All News 
+// $objRouter->get("/api/all-news",  [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function ($request){
+//     return new Response(200, NewsApi::getAll($request), "application/json");
+// }]);
 
 
 
-//Delete News
-$objRouter->post("/api/news/delete", [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function ($request){
-    return new Response(200, NewsApi::delete($request), "application/json");
-}]);
+// //Register News
+// $objRouter->post("/api/news/register",  [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function ($request){
+//     return new Response(200, NewsApi::register($request), "application/json");
+// }]);
+
+
+// //Edit News
+// $objRouter->post("/api/news/edit", [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function ($request){
+//     return new Response(200, NewsApi::edit($request), "application/json");
+// }]);
 
 
 
-//Setup Featured News
-$objRouter->post("/api/news/featured", [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function ($request){
-    return new Response(200, NewsApi::setFeatured($request), "application/json");
-}]);
+// //Delete News
+// $objRouter->post("/api/news/delete", [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function ($request){
+//     return new Response(200, NewsApi::delete($request), "application/json");
+// }]);
 
 
 
-//Setup Visible News
-$objRouter->post("/api/news/visible", [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function ($request){
-    return new Response(200, NewsApi::setVisible($request), "application/json");
-}]);
+// //Setup Featured News
+// $objRouter->post("/api/news/featured", [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function ($request){
+//     return new Response(200, NewsApi::setFeatured($request), "application/json");
+// }]);
 
 
 
-//Upload Image from CKEditor
-$objRouter->post("/api/fileuploader",  [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function ($request){
-    return new Response(200, NewsApi::uploadImage(), "application/json");
-}]);
+// //Setup Visible News
+// $objRouter->post("/api/news/visible", [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function ($request){
+//     return new Response(200, NewsApi::setVisible($request), "application/json");
+// }]);
 
 
 
-//Get News By Id
-$objRouter->get("/api/news/{id}",  [
-    "middlewares" => [
-        "requireLogin",
-    ],
-    function ($request, $id){
-    return new Response(200, NewsApi::getById($id), "application/json");
-}]);
+// //Upload Image from CKEditor
+// $objRouter->post("/api/fileuploader",  [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function ($request){
+//     return new Response(200, NewsApi::uploadImage(), "application/json");
+// }]);
+
+
+
+// //Get News By Id
+// $objRouter->get("/api/news/{id}",  [
+//     "middlewares" => [
+//         "requireLogin",
+//     ],
+//     function ($request, $id){
+//     return new Response(200, NewsApi::getById($id), "application/json");
+// }]);
 
 
 
 
-//-------------------------- News Image --------------------------//
+// //-------------------------- News Image --------------------------//
 
-//Get News Image
-$objRouter->get("/image/news/{imageName}", [
-    function ($request, $imageName) {
-        return NewsImage::getNewsImage($imageName);
-    }
-]);
+// //Get News Image
+// $objRouter->get("/image/news/{imageName}", [
+//     function ($request, $imageName) {
+//         return NewsImage::getNewsImage($imageName);
+//     }
+// ]);
 
 
 

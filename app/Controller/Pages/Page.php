@@ -11,33 +11,65 @@ use \App\Model\Entity\User as UserEntity;
 
 class Page {
 
-    private static function getSideBar() {
-        $adminContent = Login::isAdmin() ? View::render("components/adminItems") : "";
 
-        return View::render("components/sidebar", [
-            "adminItems" => $adminContent,
+    private static function getSideBar() {
+
+        $userItems = Login::isCommonUser() ? View::render("components/sidebar/user-items") : "";
+
+        $adminItems = Login::isAdmin() ? View::render("components/sidebar/admin-items") : "";
+
+        $modeItems = Login::isMode() ? View::render("components/sidebar/mode-items", [
+            "adminItems" => $adminItems
+        ]) : "";
+
+
+        return View::render("components/sidebar/index", [
+            "userItems" => $userItems,
+            "modeItems" => $modeItems,
+            "adminItems" => $adminItems
         ]);
     }
+
+
 
     private static function getTopBar() {
-        $userInfo = Login::getLoggedUserInfo();        
-        $result = UserEntity::getUserById($userInfo["id"]);
 
-        if (!$result["success"]) {
-            return "";
+        if(Login::isLogged()){
+
+            $userInfo = Login::getLoggedUserInfo(); 
+
+            $result = UserEntity::getUserById($userInfo["id"]);
+
+            $noLoggedSuccess = (!$result["success"] || ($userObjectsList = $result["value"])->rowCount() == 0);
+
+            if($noLoggedSuccess){
+                $userFirstName = "";
+                $userPhoto = "";
+            } else {
+                $userObject = $userObjectsList->fetchObject(UserEntity::class);
+                $userFirstName = $userObject->firstName ?? "";
+                $userPhoto = $userObject->photo ?? "";
+            }
+
+            $topbarRight = View::render("components/topbar/logged", [
+                "userFirstName" => $userFirstName,
+                "userPhoto" => $userPhoto
+            ]);
+        } else {
+
+            $topbarRight = View::render("components/topbar/no-logged");
         }
 
-        $objUser = $result["value"];
 
-        return View::render("components/topbar", [
-            "username" => $objUser->username, 
-            "photo" => $objUser->photo, 
+        return View::render("components/topbar/index", [
+            "topbarRight" => $topbarRight
         ]);
+
     }
 
+
     public static function renderPage($title, $content) {
-        $header = View::render("pages/header");
-        return View::render("pages/page", [
+        return View::render("pages/index", [
             "title" => $title,
             "content" => $content,
             "sidebar" => self::getSideBar(),

@@ -17,7 +17,7 @@ class Login {
 
 
     private static function my_session_start() {
-        $sessionName = sha1("sgcsitedecompras" . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
+        $sessionName = sha1("imobile_on" . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
         session_name($sessionName);
         session_start();
 
@@ -34,7 +34,7 @@ class Login {
 
     private static function my_session_regenerate_id() {
 
-        $sessionName = sha1("sgcsitedecompras" . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
+        $sessionName = sha1("imobile_on" . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
 
         $sessionAttributes = $_SESSION;
 
@@ -62,35 +62,54 @@ class Login {
     }
 
 
-    public static function login($objUser) {
+    public static function login($userObject) {
         self::init();
 
         $_SESSION["user"] = [
-            "id" => $objUser->id,
-            "fullname" => $objUser->fullname,
-            "username" => $objUser->username,
-            "email" => $objUser->email,
-            "cpf" => $objUser->cpf,
-            "photo" => $objUser->photo,
-            "privilege" => $objUser->privilege,
+            "id" => $userObject->id ?? "",
+            "firstName" => $userObject->firstName ?? "",
+            "lastName" => $userObject->lastName ?? "",
+            "email" => $userObject->email ?? "",
+            "cpf" => $userObject->cpf ?? "",
+            "photo" => $userObject->photo ?? "",
+            "privilege" => $userObject->privilege ?? "",
         ];
-
-        return true;
     }
+
+
 
     public static function getLoggedUserInfo() {
         self::init();
         return $_SESSION["user"] ?? "";
     }
 
+
+
     public static function isAdmin() {
         self::init();
-        return self::isLogged() && $_SESSION["user"]["privilege"] == 1;
+        return self::isLogged() && $_SESSION["user"]["privilege"] == 2;
     }
+
+
+
+    public static function isMode() {
+        self::init();
+        return self::isLogged() && $_SESSION["user"]["privilege"] >= 1;
+    }
+
+
+
+    public static function isCommonUser() {
+        self::init();
+        return self::isLogged() && $_SESSION["user"]["privilege"] >= 0 ;
+    }
+
+
+
 
     public static function logout() {
 
-        $sessionName = sha1("sgcsitedecompras" . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
+        $sessionName = sha1("imobile_on" . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
 
         self::init();
         unset($_SESSION["user"]);
@@ -99,9 +118,11 @@ class Login {
 
     }
 
+
+
     public static function isLogged() {
         self::init();
-        return isset($_SESSION["user"]["username"]);
+        return isset($_SESSION["user"]["id"]) && !empty($_SESSION["user"]["id"]);
     }
 }
 

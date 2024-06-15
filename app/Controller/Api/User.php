@@ -119,7 +119,7 @@ class User {
                 ]);
             }
     
-           // SessionLogin::login($userObject);
+           SessionLogin::login($userObject);
     
             return json_encode([
                 "success" => true, 
