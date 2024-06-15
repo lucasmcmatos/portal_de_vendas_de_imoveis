@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>Anúncios da Plataforma</title>
 
     <!-- Favicon -->
     <link rel="icon" href="../img/icone-pagina.svg" type="image/x-icon">
@@ -57,7 +57,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-home" style="color: #474242;"></i>
                     <span  style="color: #474242;">Home</span></a>
@@ -72,7 +72,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo" >
                     <i class="fas fa-fw fa-bullhorn"  style="color: #474242;"></i>
@@ -80,7 +80,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html"  style="color: #474242;">Anúncios da Plataforma</a>
+                        <a class="collapse-item active" href="buttons.html"  style="color: #474242;">Anúncios da Plataforma</a>
                         <a class="collapse-item" href="cards.html"  style="color: #474242;">Meus Anúncios</a>
                         <a class="collapse-item" href="cards.html"  style="color: #474242;">Anúncios Favoritos</a>
                     </div>
@@ -157,8 +157,7 @@
                             </div>
                         </div>
                     </form>
-                    
-                    <!-- Busca Personalizada -->
+
                     <div class="btn btn-light d-none d-xl-inline-block ml-4 mw-50 navbar-search" style="background-color: #DCCCC3; border:1px solid #00000027;" data-toggle="modal" data-target="#buscaPersonalizadaModal">
                         Busca Personalizada
                     </div>
@@ -207,7 +206,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>    
+                    </div>                   
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -392,12 +391,238 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="d-flex flex-lg-row h-100 p-4 align-items-center" style="background: url('../img/frame-homepage.svg') no-repeat center center; background-size: cover;">
+                <div class="d-flex flex-column flex-xl-row p-4 align-items-start">
 
-                    <div class="col-12 col-lg-5 p-4 d-flex flex-column" style="background-color: #ffffff; border-radius:10px;">
-                        <h1 style="color: #000000; font-weight:700; font-family:'Sensation'">Descubra a Forma Ideal de Comprar e Vender Imóveis</h1>
-                        <p>Encontre o imóvel dos seus sonhos com insights personalizados, orçamentos customizados, rastreamento de gastos e monitoramento de assinaturas - tudo grátis.</p>
-                        <a href="#signup" class="btn btn-light" style="background-color: #DCCCC3; border-color:#00000027; width:70%; font-weight: 700;">Cadastre-se Agora</a>
+                    <div class="col-12  container">
+                        <div class="col-12 row">
+                            <!-- Formulário de Filtros -->
+                            <div class="col-12 col-xl-3 p-0 pt-xl-4 d-flex flex-column" >
+                                
+                                <form class="p-4" style="border-radius:10px; border:1px solid #00000027;">
+
+                                    <h1 class="mb-4" style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px;">Filtros de Busca</h1>
+                                    <div class="form-group">
+                                        <label for="valorMaximo">Valor Máximo</label>
+                                        <input type="number" class="form-control" id="valorMaximo" name="valorMaximo" placeholder="Valor Máximo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="valorMinimo">Valor Mínimo</label>
+                                        <input type="number" class="form-control" id="valorMinimo" name="valorMinimo" placeholder="Valor Mínimo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="areaConstruidaMaxima">Área Construída Máxima (m²)</label>
+                                        <input type="number" class="form-control" id="areaConstruidaMaxima" name="areaConstruidaMaxima" placeholder="Área Construída Máxima">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="areaConstruidaMinima">Área Construída Mínima (m²)</label>
+                                        <input type="number" class="form-control" id="areaConstruidaMinima" name="areaConstruidaMinima" placeholder="Área Construída Mínima">
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="piscina" name="piscina">
+                                        <label class="form-check-label" for="piscina">Piscina</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="churrasqueira" name="churrasqueira">
+                                        <label class="form-check-label" for="churrasqueira">Churrasqueira</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="quadraEsportiva" name="quadraEsportiva">
+                                        <label class="form-check-label" for="quadraEsportiva">Quadra Esportiva</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-light mt-3" style="background-color: #DCCCC3; border-color:#00000027">Aplicar Filtros</button>
+                                </form>
+                            </div>
+                
+                            <!-- Lista de Anúncios -->
+                            <div class="col-12 col-xl-8 p-4 ml-xl-4 mt-4 d-flex flex-column" style="border-radius:10px; border:1px solid #00000027;">
+                                <h1 style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px;">Anúncios Encontrados</h1>
+                                <ul class="list-unstyled " >
+                                    <!-- Anúncio 1 -->
+                                    <li class="mt-4">
+                                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                                            <div class="row no-gutters">
+                                                <!-- Espaço para a foto -->
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('../img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+
+                                                        <button class="btn btn-light top-0 end-0 mt-2" style="border: 1px solid #00000027; z-index: 1;">
+                                                            <i class="fas fa-heart"></i>
+                                                            <span class="ml-2">Favoritar</span>
+                                                        </button>
+                                                    </div>
+
+                                                    
+                                                </div>
+                                            </div>
+
+                                        </a>
+                                    </li>
+                                    <!-- Anúncio 2 -->
+                                    <li class="mt-4">
+                                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                                            <div class="row no-gutters">
+                                                <!-- Espaço para a foto -->
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('../img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+
+                                                        <button class="btn btn-light top-0 end-0 mt-2" style="border: 1px solid #00000027; z-index: 1;">
+                                                            <i class="fas fa-heart"></i>
+                                                            <span class="ml-2">Favoritar</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <!-- Anúncio 2 -->
+                                    <li class="mt-4">
+                                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                                            <div class="row no-gutters">
+                                                <!-- Espaço para a foto -->
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('../img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+
+                                                        <button class="btn btn-light top-0 end-0 mt-2" style="border: 1px solid #00000027; z-index: 1;">
+                                                            <i class="fas fa-heart"></i>
+                                                            <span class="ml-2">Favoritar</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <!-- Anúncio 2 -->
+                                    <li class="mt-4">
+                                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                                            <div class="row no-gutters">
+
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('../img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+
+                                                        <button class="btn btn-light top-0 end-0 mt-2" style="border: 1px solid #00000027; z-index: 1;">
+                                                            <i class="fas fa-heart"></i>
+                                                            <span class="ml-2">Favoritar</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- Anúncio 2 -->
+                                    <li class="mt-4">
+                                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                                            <div class="row no-gutters">
+
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('../img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+
+                                                        <button class="btn btn-light top-0 end-0 mt-2" style="border: 1px solid #00000027; z-index: 1;">
+                                                            <i class="fas fa-heart"></i>
+                                                            <span class="ml-2">Favoritar</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    
+                                    <!-- Adicione mais anúncios conforme necessário -->
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
