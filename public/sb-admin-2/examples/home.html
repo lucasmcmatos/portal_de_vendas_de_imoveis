@@ -12,7 +12,7 @@
     <title>Home</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="../img/iconePagina.svg" type="image/x-icon">
+    <link rel="icon" href="../img/icone-pagina.svg" type="image/x-icon">
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,9 +21,14 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
 
-    
+    <style>
+        @font-face {
+            font-family: 'Sensation';
+            src: url('../../fonts/Sansation.ttf') format('truetype');
+        }
+    </style>
 
 </head>
 
@@ -33,18 +38,18 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #DCCCC3;">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #DCCCC3; font-family:'Sensation';">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 
                 
                 <div class="sidebar-brand-icon">
-                    <img src="../img/navbarIconame.svg" width="50px">
+                    <img src="../img/navbar-ico-name.svg" width="50px">
                 </div>
                 <div class="sidebar-brand-text mx-1">
                     
-                    <img src="../img/navbarIcoimg.svg" width="130px">
+                    <img src="../img/navbar-ico-img.svg" width="130px">
                 </div>
             </a>
 
@@ -52,17 +57,17 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-home" style="color: #7d725f;"></i>
-                    <span style="color: #7d725f;">Home</span></a>
+                    <i class="fas fa-fw fa-home" style="color: #474242;"></i>
+                    <span  style="color: #474242;">Home</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading" style="color: #937f74a8;">
+            <div class="sidebar-heading" style="color: #474242;">
                 Interface
             </div>
 
@@ -70,14 +75,14 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo" >
-                    <i class="fas fa-fw fa-bullhorn"  style="color: #937f74a8;"></i>
-                    <span  style="color: #937f74a8;">Anúncios</span>
+                    <i class="fas fa-fw fa-bullhorn"  style="color: #474242;"></i>
+                    <span  style="color: #474242;">Anúncios</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html"  style="color: #937f74a8;">Anúncios da Plataforma</a>
-                        <a class="collapse-item" href="cards.html"  style="color: #937f74a8;">Meus Anúncios</a>
-                        <a class="collapse-item" href="cards.html"  style="color: #937f74a8;">Anúncios Favoritos</a>
+                        <a class="collapse-item" href="buttons.html"  style="color: #474242;">Anúncios da Plataforma</a>
+                        <a class="collapse-item" href="cards.html"  style="color: #474242;">Meus Anúncios</a>
+                        <a class="collapse-item" href="cards.html"  style="color: #474242;">Anúncios Favoritos</a>
                     </div>
                 </div>
             </li>
@@ -86,29 +91,30 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading"  style="color: #937f74a8;">
+            <div class="sidebar-heading"  style="color: #474242;">
                 Moderação
             </div>
 
 
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-cog"    style="color: #937f74a8;"></i>
-                    <span    style="color: #937f74a8;">Anúncios</span></a>
+                    <i class="fas fa-fw fa-cog" style="color: #474242;"></i>
+                    <span style="color: #474242;">Anúncios</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-cog" style="color: #937f74a8;"></i>
-                    <span style="color: #937f74a8;">Usuários</span>
+                    <i class="fas fa-fw fa-cog" style="color: #474242;"></i>
+                    <span style="color: #474242;">Usuários</span>
                 </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html" style="color: #937f74a8;">Usuários Comuns</a>
-                        <a class="collapse-item" href="register.html" style="color: #937f74a8;" >Usuários Moderadores</a>
+                        <a class="collapse-item" href="login.html" style="color: #474242;">Usuários Comuns</a>
+                        <a class="collapse-item" href="register.html" style="color: #474242;" >Usuários Moderadores</a>
                     </div>
                 </div>
             </li>
@@ -132,7 +138,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar  static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -145,7 +151,7 @@
                             <input type="text" class="form-control bg-light small" placeholder="Pesquisar Anúncios ..."
                                 aria-label="Search" aria-describedby="basic-addon2"  style="border: 1px solid #dcccc37e;">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" style="background-color: #DCCCC3; border-color:#DCCCC3">
+                                <button class="btn btn-light" type="button" style="background-color: #DCCCC3; border-color:#DCCCC3">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -304,7 +310,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                    src="../img/undraw-profile-1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -335,10 +341,13 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="d-flex flex-lg-row h-100 p-4 align-items-center" style="background: url('../img/frame-homepage.svg') no-repeat center center; background-size: cover;">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <div class="col-12 col-lg-5 p-4 d-flex flex-column" style="background-color: #ffffff; border-radius:10px;">
+                        <h1 style="color: #000000; font-weight:700; font-family:'Sensation'">Descubra a Forma Ideal de Comprar e Vender Imóveis</h1>
+                        <p>Encontre o imóvel dos seus sonhos com insights personalizados, orçamentos customizados, rastreamento de gastos e monitoramento de assinaturas - tudo grátis.</p>
+                        <a href="#signup" class="btn btn-light" style="background-color: #DCCCC3; border-color:#DCCCC3; width:70%; font-weight: 700;">Cadastre-se Agora</a>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->

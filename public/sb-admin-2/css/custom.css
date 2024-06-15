@@ -23,7 +23,10 @@
     object-fit: cover;
 }
 
-
+@font-face {
+    font-family: 'Sensation';
+    src: url('fonts/Sensation.ttf') format('truetype');
+}
 
 @media (max-width: 992px) and (orientation: portrait){
     .news-photo{
