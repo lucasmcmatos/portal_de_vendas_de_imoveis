@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>Nome do Anúncios</title>
 
     <!-- Favicon -->
     <link rel="icon" href="../img/icone-pagina.svg" type="image/x-icon">
@@ -57,7 +57,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-home" style="color: #474242;"></i>
                     <span  style="color: #474242;">Home</span></a>
@@ -72,7 +72,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo" >
                     <i class="fas fa-fw fa-bullhorn"  style="color: #474242;"></i>
@@ -80,7 +80,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html"  style="color: #474242;">Anúncios da Plataforma</a>
+                        <a class="collapse-item active" href="buttons.html"  style="color: #474242;">Anúncios da Plataforma</a>
                         <a class="collapse-item" href="cards.html"  style="color: #474242;">Meus Anúncios</a>
                         <a class="collapse-item" href="cards.html"  style="color: #474242;">Anúncios Favoritos</a>
                     </div>
@@ -157,8 +157,7 @@
                             </div>
                         </div>
                     </form>
-                    
-                    <!-- Busca Personalizada -->
+
                     <div class="btn btn-light d-none d-xl-inline-block ml-4 mw-50 navbar-search" style="background-color: #DCCCC3; border:1px solid #00000027;" data-toggle="modal" data-target="#buscaPersonalizadaModal">
                         Busca Personalizada
                     </div>
@@ -207,7 +206,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>    
+                    </div>                   
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -392,12 +391,68 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="d-flex flex-lg-row h-100 p-4 align-items-center" style="background: url('../img/frame-homepage.svg') no-repeat center center; background-size: cover;">
+                <div class="d-flex flex-column flex-xl-row p-4 align-items-start">
 
-                    <div class="col-12 col-lg-5 p-4 d-flex flex-column" style="background-color: #ffffff; border-radius:10px;">
-                        <h1 style="color: #000000; font-weight:700; font-family:'Sensation'">Descubra a Forma Ideal de Comprar e Vender Imóveis</h1>
-                        <p>Encontre o imóvel dos seus sonhos com insights personalizados, orçamentos customizados, rastreamento de gastos e monitoramento de assinaturas - tudo grátis.</p>
-                        <a href="#signup" class="btn btn-light" style="background-color: #DCCCC3; border-color:#00000027; width:70%; font-weight: 700;">Cadastre-se Agora</a>
+                    <div class="col-12  container">
+                        <div class="col-12 row">
+                            <!-- Formulário de Filtros -->
+                            
+                
+                            <!-- Lista de Anúncios -->
+                            <div class="col-12 col-xl-8 p-4 ml-xl-4 mt-4 d-flex flex-column" >
+                                <h1 style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px;">Título do Anúncio</h1>
+                                
+                                <!-- Exemplo de Card de Anúncio -->
+                                <div class="card mb-4">
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="../img/frame-homepage.svg" class="d-block w-100" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="../img/frame-homepage.svg" class="d-block w-100" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="../img/frame-homepage.svg" class="d-block w-100" alt="...">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Título do Anúncio</h5>
+                                        <p class="card-text">Descrição breve do anúncio. Detalhes sobre o produto ou serviço anunciado.</p>
+                                        
+                                        <div><strong>Valor:</strong> R$ 500.000,00</div>
+                                        <div><strong>Data de Publicação:</strong> 15/06/2024</div>
+                                        <div><strong>Tipo de Anúncio:</strong> Venda</div>
+                                        <div><strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado</div>
+                                        <div><strong>Área Construída:</strong> 150 m²</div>
+                                        <div><strong>Número de Banheiros:</strong> 3</div>
+                                        <div><strong>Número de Cômodos:</strong> 5</div>
+                                        <div><strong>Vagas na Garagem:</strong> 2</div>
+                                        <div><strong>Tipo de Propriedade:</strong> Casa de Condomínio</div>
+                                        <div><strong>Incidência Solar:</strong> Nascente</div>
+                                        <div><strong>Mobília:</strong> Mobiliado</div>
+                                        <div><strong>Piscina:</strong> Com</div>
+                                        <div><strong>Churrasqueira:</strong> Com</div>
+                                        <div><strong>Quadra Esportiva:</strong> Com</div>
+                                    </div>
+                                </div>
+                                <!-- Fim do Exemplo de Card de Anúncio -->
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -406,19 +461,10 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer> -->
-            <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
+        
 
     </div>
     <!-- End of Page Wrapper -->

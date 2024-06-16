@@ -1,0 +1,702 @@
+<!-- Begin Page Content -->
+<div class="d-flex flex-column flex-xl-row p-4 align-items-start">
+
+    <div class="col-12  container">
+        <div class="col-12 row">
+            <!-- Formulário de Filtros -->
+            <div class="col-12 col-xl-3 p-0 pt-xl-4 d-flex flex-column">
+
+                <form class="p-4" style="border-radius:10px; border:1px solid #00000027;">
+
+                    <h1 class="mb-4" style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px;">
+                        Filtros de Busca</h1>
+                    <div class="form-group">
+                        <label for="valorMaximo">Valor Máximo</label>
+                        <input type="number" class="form-control" id="valorMaximo" name="valorMaximo"
+                            placeholder="Valor Máximo">
+                    </div>
+                    <div class="form-group">
+                        <label for="valorMinimo">Valor Mínimo</label>
+                        <input type="number" class="form-control" id="valorMinimo" name="valorMinimo"
+                            placeholder="Valor Mínimo">
+                    </div>
+                    <div class="form-group">
+                        <label for="areaConstruidaMaxima">Área Construída Máxima (m²)</label>
+                        <input type="number" class="form-control" id="areaConstruidaMaxima" name="areaConstruidaMaxima"
+                            placeholder="Área Construída Máxima">
+                    </div>
+                    <div class="form-group">
+                        <label for="areaConstruidaMinima">Área Construída Mínima (m²)</label>
+                        <input type="number" class="form-control" id="areaConstruidaMinima" name="areaConstruidaMinima"
+                            placeholder="Área Construída Mínima">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="piscina" name="piscina">
+                        <label class="form-check-label" for="piscina">Piscina</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="churrasqueira" name="churrasqueira">
+                        <label class="form-check-label" for="churrasqueira">Churrasqueira</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="quadraEsportiva" name="quadraEsportiva">
+                        <label class="form-check-label" for="quadraEsportiva">Quadra Esportiva</label>
+                    </div>
+                    <button type="submit" class="btn btn-light mt-3"
+                        style="background-color: #DCCCC3; border-color:#00000027">Aplicar Filtros</button>
+                </form>
+            </div>
+
+
+            <!-- Lista de Anúncios -->
+            <div class="col-12 col-xl-8 p-4 ml-xl-4 mt-4 d-flex flex-column"
+                style="border-radius:10px; border:1px solid #00000027;">
+                <h1 style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px;">Anúncios
+                    Encontrados</h1>
+                <ul id="advertisings-list-container" class="list-unstyled">
+                    <!-- Anúncio 1 -->
+                    <li class="mt-4">
+                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <button class="btn btn-light top-0 end-0 mt-2"
+                                            style="border: 1px solid #00000027; z-index: 1;">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="ml-2">Favoritar</span>
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </a>
+                    </li>
+                    <!-- Anúncio 2 -->
+                    <li class="mt-4">
+                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <button class="btn btn-light top-0 end-0 mt-2"
+                                            style="border: 1px solid #00000027; z-index: 1;">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="ml-2">Favoritar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Anúncio 3 -->
+                    <li class="mt-4">
+                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <button class="btn btn-light top-0 end-0 mt-2"
+                                            style="border: 1px solid #00000027; z-index: 1;">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="ml-2">Favoritar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Anúncio 4 -->
+                    <li class="mt-4">
+                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                            <div class="row no-gutters">
+
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <button class="btn btn-light top-0 end-0 mt-2"
+                                            style="border: 1px solid #00000027; z-index: 1;">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="ml-2">Favoritar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Anúncio 5 -->
+                    <li class="mt-4">
+                        <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                            <div class="row no-gutters">
+
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/frame-homepage.svg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <button class="btn btn-light top-0 end-0 mt-2"
+                                            style="border: 1px solid #00000027; z-index: 1;">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="ml-2">Favoritar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+
+                    <!-- Adicione mais anúncios conforme necessário -->
+                </ul>
+
+                
+                <!-- advertisings List Pagination-->
+                <nav id="advertisings-pagination" class="d-none justify-content-center" aria-label="Page navigation example">
+                    <ul class="pagination m-0 justify-content-center" style="cursor: pointer;"></ul>
+                </nav>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--advertisings Item Template-->
+    <template id="advertising-item-template">
+
+        <li class="mt-4">
+            <a href="#" class="card d-block bg-light text-decoration-none text-dark">
+                <div class="row no-gutters">
+                    <!-- Espaço para a foto -->
+                    <div class="col-md-4">
+                        <div class="card-img"
+                            style="background-size: cover;background-position: center; height: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <!-- Título -->
+                            <h5 class="card-title mb-3"></h5>
+
+                            <!-- Valor do Anúncio -->
+                            <div class="mb-2">
+                                <strong>Valor:</strong>
+                            </div>
+
+                            <!-- Endereço -->
+                            <div class="mb-2">
+                                <strong>Endereço:</strong>
+                            </div>
+
+                            <!-- Descrição -->
+                            <p class="card-text mb-0"></p>
+
+                            <button class="btn btn-light top-0 end-0 mt-2"
+                                style="border: 1px solid #00000027; z-index: 1;">
+                                <i class="fas fa-heart"></i>
+                                <span class="ml-2">Favoritar</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </a>
+        </li>
+    </template>
+
+</div>
+<!-- /.container-fluid -->
+
+
+
+
+<!-- advertisings List Pagination Script-->
+<script>
+
+    var advertisings = [];
+    const nadvertisingsPerPage = 2;
+    const pageShowLimit = 3;
+
+
+
+
+
+    function renderInitialAdvertisingPage(container) {
+        const totalPages = Math.ceil(advertisings.length / advertisingsPerPage);
+        var finalIndex = advertisings.length < advertisingsPerPage ? advertisings.length : advertisingsPerPage;
+        for (i = 0; i < finalIndex; i++) {
+            container.appendChild(advertisings[i])
+        }
+
+        if (totalPages > 1) {
+            document.getElementById("advertisings-pagination").classList.add("d-flex");
+            document.getElementById("advertisings-pagination").classList.remove("d-none");
+        }
+    }
+
+
+
+
+
+
+
+    function renderAdvertisingsPage(initialIndex, finalIndex, container) {
+        container.innerHTML = '';
+        for (i = initialIndex; i < finalIndex; i++) {
+            container.appendChild(advertisings[i]);
+        }
+    }
+
+
+
+
+
+
+
+
+    function pageShowLimitEvents(initialShowPageNumber, finalShowPageNumber, totalPages) {
+
+        //mostra apenas os itens de paginação no intervalo definido
+        document.getElementById("advertisings-pagination").querySelectorAll(".page-number").forEach((pageNumber, index) => {
+            if (index >= initialShowPageNumber && index < finalShowPageNumber) {
+                pageNumber.classList.remove("d-none");
+            } else {
+                pageNumber.classList.add("d-none");
+            }
+        });
+
+
+
+        //mostra e esconde o botão "anterior"
+        if (initialShowPageNumber + 1 > pageShowLimit) {
+            document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[0].classList.add('d-flex');
+            document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[0].classList.remove('d-none');
+        } else {
+            if (!document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[0].classList.contains('d-none')) {
+                document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[0].classList.add('d-none');
+                document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[0].classList.remove('d-flex');
+            }
+        }
+
+        //mostra e esconde o botão "próximo"
+        if (initialShowPageNumber + 1 <= totalPages - pageShowLimit) {
+            document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[1].classList.add('d-flex');
+            document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[1].classList.remove('d-none');
+        } else {
+            if (!document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[1].classList.contains('d-none')) {
+                document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[1].classList.add('d-none');
+                document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[1].classList.remove('d-flex');
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+    //adiciona os eventos nos itens da paginação
+    function addPaginationEvents() {
+
+        const totalPages = Math.ceil(advertisings.length / advertisingsPerPage);
+
+        document.getElementById("advertisings-pagination").querySelectorAll(".page-number").forEach((pageItem) => {
+            const container = document.getElementById('advertisings-list-container');
+
+            pageItem.addEventListener('click', (event) => {
+                event.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                //tira a classe selected de todos e coloca no item que foi clicado
+                document.getElementById("advertisings-pagination").querySelectorAll(".page-number").forEach((pageNumber) => {
+                    if (pageNumber.querySelector('.page-link').classList.contains('page-link-selected')) {
+                        pageNumber.querySelector('.page-link').classList.remove('page-link-selected');
+                    }
+                });
+                pageItem.querySelector('.page-link').classList.add('page-link-selected');
+
+                //passa os parâmetros necessários para renderizar a página clicada
+                var initialIndex = advertisings * (parseInt(pageItem.innerText) - 1);
+                var calculateFinalIndex = advertisings * parseInt(pageItem.innerText);
+                var finalIndex = advertisings.length < calculateFinalIndex ? advertisings.length : calculateFinalIndex;
+                renderAdvertisingsPage(initialIndex, finalIndex, container)
+
+            });
+
+        });
+
+        //define os eventos de clique para os botões "anterior" e "próximo"
+        var initialShowPageNumber = 0
+        var finalShowPageNumber = pageShowLimit;
+
+        if (totalPages > pageShowLimit) {
+            //anterior
+            document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[0].addEventListener('click', (event) => {
+                console.log('ant');
+                event.preventDefault();
+                initialShowPageNumber = initialShowPageNumber - pageShowLimit;
+                finalShowPageNumber = finalShowPageNumber - pageShowLimit;
+                pageShowLimitEvents(initialShowPageNumber, finalShowPageNumber, totalPages)
+            });
+
+            //próximo
+            document.getElementById("advertisings-pagination").querySelectorAll(".page-show-limit")[1].addEventListener('click', (event) => {
+                console.log('prox');
+                event.preventDefault();
+                initialShowPageNumber = initialShowPageNumber + pageShowLimit;
+                finalShowPageNumber = finalShowPageNumber + pageShowLimit;
+
+                pageShowLimitEvents(initialShowPageNumber, finalShowPageNumber, totalPages)
+            });
+        }
+    }
+
+
+
+
+
+
+
+    //cria a paginação 
+    function addPagination() {
+        const totalPages = Math.ceil(advertisings.length / advertisingsPerPage);
+
+        //cria o botão "anterior"
+        if (totalPages > pageShowLimit) {
+            var paginationItem = document.createElement('li');
+            paginationItem.classList.add("page-item");
+            paginationItem.classList.add("page-show-limit");
+
+            var paginationItemAnchor = document.createElement('a');
+            paginationItemAnchor.classList.add("page-link");
+            paginationItemAnchor.style.color = "var(--black)";
+            paginationItemAnchor.innerText = "Anterior";
+
+            paginationItem.appendChild(paginationItemAnchor);
+
+            paginationItem.classList.add('d-none');
+
+            document.getElementById("advertisings-pagination").querySelector(".pagination").appendChild(paginationItem);
+        }
+
+        //cria os números da paginação
+        for (i = 1; i <= totalPages; i++) {
+            var paginationItem = document.createElement('li');
+            paginationItem.classList.add("page-item");
+            paginationItem.classList.add("page-number");
+
+            var paginationItemAnchor = document.createElement('a');
+            paginationItemAnchor.classList.add("page-link");
+            paginationItemAnchor.style.color = "var(--black)";
+            paginationItemAnchor.innerText = i;
+
+            paginationItem.appendChild(paginationItemAnchor);
+
+            document.getElementById("advertisings-pagination").querySelector(".pagination").appendChild(paginationItem);
+        }
+
+        //cria o botão "próximo"
+        if (totalPages > pageShowLimit) {
+            var paginationItem = document.createElement('li');
+            paginationItem.classList.add("page-item");
+            paginationItem.classList.add("page-show-limit");
+
+            var paginationItemAnchor = document.createElement('a');
+            paginationItemAnchor.classList.add("page-link");
+            paginationItemAnchor.style.color = "var(--black)";
+            paginationItemAnchor.innerText = "Próximo";
+
+            paginationItem.appendChild(paginationItemAnchor);
+
+            paginationItem.classList.add('d-flex');
+
+            document.getElementById("advertisings-pagination").querySelector(".pagination").appendChild(paginationItem);
+        }
+
+        addPaginationEvents();
+        //define a página um como selecionada por padrão
+        document.getElementById("advertisings-pagination").querySelector(".page-number").querySelector('.page-link').classList.add('page-link-selected');
+
+        //esconde as páginas que excedem o limite de paginação
+        if (document.getElementById("advertisings-pagination").querySelectorAll(".page-number").length > pageShowLimit) {
+            document.getElementById("advertisings-pagination").querySelectorAll(".page-number").forEach((pageNumber, index) => {
+                if (index >= pageShowLimit) {
+                    pageNumber.classList.add('d-none');
+                }
+            });
+        }
+    }
+
+
+
+
+
+
+
+
+
+    async function getAllAdvertisings() {
+
+        try {
+            let response = await fetch("/api/all-advertisings", {
+                method: "GET"
+            });
+
+            let data = await response.json();
+            return data;
+        } catch (error) {
+            return {
+                success: false,
+                message: "Não foi possível carregar as notícias. Tente novamente mais tarde."
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    async function createCardsPage() {
+
+        const template = document.getElementById('advertising-item-template');
+        const container = document.getElementById('advertisings-list-container');
+        let response = await getAllAdvertisings();
+
+        if (response.success) {
+            if (response.data.length > 0) {
+                response.data.forEach((item) => {
+
+                    const newsId = item.id;
+
+                    const clone = document.importNode(template.content, true);
+
+                    const photo = clone.querySelector('.news-photo');
+                    photo.src = item.photo;
+                    //image.onclick = function () { window.location.href = `/news/edit/${newsId}` };
+
+
+
+                    const info = clone.querySelector('.info');
+                    //info.onclick = function () { window.location.href = `/news/edit/${newsId}` };
+                    info.querySelector('.title').innerHTML = item.title;
+                    info.querySelector('.author').innerHTML += item.author;
+                    info.querySelector('.schedule').innerHTML += item.schedule;
+
+
+
+                    const deleteButton = clone.querySelector('.delete-news-button');
+                    deleteButton.addEventListener("click", async (event) => {
+                        event.preventDefault();
+                        createDeleteEvent(newsId);
+                    });
+                    $(deleteButton).tooltip();
+
+
+
+                    const editButton = clone.querySelector('.edit-news-button');
+                    //editButton.href = `/news/edit/${newsId}`;
+                    editButton.addEventListener("click", async (event) => {
+                        event.preventDefault();
+                        fillEditNewsForm(newsId);
+                    });
+                    $(editButton).tooltip();
+
+
+
+                    const previewButton = clone.querySelector('.preview-news-button');
+                    //previewButton.href = `/news/preview/${newsId}`;
+                    $(previewButton).tooltip();
+
+
+
+                    const featuredButton = clone.querySelector('.featured-news-button');
+                    featuredButton.title = item.featuredButtonTitle;
+
+                    const featuredIcon = featuredButton.querySelector("i");
+                    featuredIcon.classList.add(item.featuredButtonClass);
+
+                    const newsFeaturedInput = featuredButton.querySelector(".featured-news-input");
+                    newsFeaturedInput.name = "featured-input-" + newsId;
+                    newsFeaturedInput.checked = item.featured;
+
+                    featuredButton.addEventListener("click", async (event) => {
+                        event.preventDefault();
+                        newsFeaturedInput.checked = !newsFeaturedInput.checked
+                        createFeaturedEvent(newsFeaturedInput, newsId);
+                    });
+                    $(featuredButton).tooltip();
+
+
+
+                    const visibleButton = clone.querySelector('.visible-news-button');
+                    visibleButton.title = item.visibleButtonTitle;
+
+                    const visibleIcon = visibleButton.querySelector("i");
+                    visibleIcon.classList.add(item.visibleButtonClass);
+
+                    const newsVisibleInput = visibleButton.querySelector(".visible-news-input");
+                    newsVisibleInput.name = "visible-input-" + newsId;
+                    newsVisibleInput.checked = item.visible;
+
+                    visibleButton.addEventListener("click", async (event) => {
+                        event.preventDefault();
+                        newsVisibleInput.checked = !newsVisibleInput.checked;
+                        createVisibleEvent(newsVisibleInput, newsId);
+                    });
+
+                    $(visibleButton).tooltip();
+
+
+                    const element = clone.children[0];
+                    news.push(element);
+
+                });
+
+                renderInitialNewsPage(container);
+                addPagination();
+
+            } else {
+                console.log(response);
+                noticiasContainer.parentNode.querySelector(".error-message").innerHTML = response.message;
+                noticiasContainer.parentNode.querySelector(".error-message").classList.add("d-flex");
+                noticiasContainer.parentNode.querySelector(".error-message").classList.remove("d-none");
+            }
+
+        } else {
+            noticiasContainer.parentNode.querySelector(".error-message").innerHTML = response.message;
+            noticiasContainer.parentNode.querySelector(".error-message").classList.add("d-flex");
+            noticiasContainer.parentNode.querySelector(".error-message").classList.remove("d-none");
+        }
+
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        createCardsPage()
+    });
+
+
+</script>
+

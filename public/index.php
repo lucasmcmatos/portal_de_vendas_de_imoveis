@@ -17,9 +17,12 @@ require_once(__DIR__ . "/../app/Core/Database.php");
 require_once(__DIR__ . "/../app/Utils/View.php");
 
 
+require_once(__DIR__ . "/../app/Controller/Pages/Home.php");
 require_once(__DIR__ . "/../app/Controller/Pages/Register.php");
 require_once(__DIR__ . "/../app/Controller/Pages/Login.php");
-require_once(__DIR__ . "/../app/Controller/Pages/Home.php");
+require_once(__DIR__ . "/../app/Controller/Pages/ForgotPassword.php");
+require_once(__DIR__ . "/../app/Controller/Pages/PlatformAdvertising.php");
+
 
 
 // require_once(__DIR__ . "/../app/Controller/Pages/RegisterUser.php");
@@ -49,10 +52,12 @@ use \App\Http\Middleware\Queue as MiddlewareQueue;
 use \App\Core\Database;
 use \App\Utils\View;
 
-
+use \App\Controller\Pages\Home;
 use \App\Controller\Pages\Register;
 use \App\Controller\Pages\Login;
-use \App\Controller\Pages\Home;
+use \App\Controller\Pages\ForgotPassword;
+use \App\Controller\Pages\PlatformAdvertising;
+
 // use \App\Controller\Pages\RegisterUser;
 use \App\Controller\Pages\NotFound;
 // use \App\Controller\Pages\Settings;
@@ -60,6 +65,8 @@ use \App\Controller\Pages\NotFound;
 
 
 use \App\Controller\Api\User as UserApi;
+
+
 // use \App\Controller\Api\News as NewsApi;
 
 
@@ -87,14 +94,24 @@ $objRouter = new Router(URL);
 
 
 
+$objRouter->get("/",  [
+    "middlewares" => [
+        "requireLogout",
+    ],
+    function () {
+        return new Response(200, Home::render());
+    }
+]);
+
 
 $objRouter->get("/register",  [
     "middlewares" => [
         "requireLogout",
     ],
     function () {
-    return new Response(200, Register::render());
-}]);
+        return new Response(200, Register::render());
+    }
+]);
 
 
 
@@ -104,34 +121,74 @@ $objRouter->get("/login",  [
         "requireLogout",
     ],
     function () {
-    return new Response(200, Login::render());
-}]);
+        return new Response(200, Login::render());
+    }
+]);
 
 
 
-
-$objRouter->get("/",  [
+$objRouter->get("/forgot-password",  [
     "middlewares" => [
         "requireLogout",
     ],
     function () {
-    return new Response(200, Home::render());
-}]);
+        return new Response(200, ForgotPassword::render());
+    }
+]);
+
+
+
+$objRouter->get("/platform-advertising-out",  [
+    "middlewares" => [
+        "requireLogout",
+    ],
+    function ($request) {
+        return new Response(200, PlatformAdvertising::render($request));
+    }
+]);
 
 
 
 
-$objRouter->get("home",  [
+
+$objRouter->get("/home",  [
     "middlewares" => [
         "requireLogin",
     ],
     function () {
-    return new Response(200, Home::render());
-}]);
+        return new Response(200, Home::render());
+    }
+]);
+
+
+$objRouter->get("/platform-advertising",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, PlatformAdvertising::render($request));
+    }
+]);
 
 
 
- 
+
+$objRouter->get("/logout",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, Login::setLogout($request));
+    }
+]);
+
+
+
+
+
+
+
+
 
 
 
@@ -201,18 +258,20 @@ $objRouter->post("/api/register",  [
     "middlewares" => [
         "requireLogout",
     ],
-    function ($request){
+    function ($request) {
         return new Response(200, UserApi::register($request), "application/json");
-}]);
+    }
+]);
 
 
 $objRouter->post("/api/login",  [
     "middlewares" => [
         "requireLogout",
     ],
-    function ($request){
+    function ($request) {
         return new Response(200, UserApi::login($request), "application/json");
-}]);
+    }
+]);
 
 
 // USER
@@ -232,9 +291,10 @@ $objRouter->post("/api/user/delete",  [
         "requireLogin",
         "requireAdmin",
     ],
-    function ($request){
-    return new Response(200, UserApi::delete($request), "application/json");
-}]);
+    function ($request) {
+        return new Response(200, UserApi::delete($request), "application/json");
+    }
+]);
 
 
 
@@ -262,9 +322,7 @@ $objRouter->post("/api/user/random-password", [
 
 
 $objRouter->post("/api/user/general", [
-    "middlewares" => [
-
-    ],
+    "middlewares" => [],
     function ($request) {
         return new Response(200, UserApi::editFields($request), "application/json");
     }
@@ -465,7 +523,7 @@ MiddlewareQueue::setDefault([]);
 $response = $objRouter->run();
 
 
-if ($response->getCode() == 404)  {
+if ($response->getCode() == 404) {
     $notFoundRes = new Response(404, NotFound::render());
     $notFoundRes->sendResponse();
     exit;

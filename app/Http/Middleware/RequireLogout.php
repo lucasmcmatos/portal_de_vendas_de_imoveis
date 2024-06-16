@@ -8,7 +8,7 @@ use \App\Session\Login;
 class RequireLogout {
     public function handle($request, $next) {
         if (Login::isLogged()) {
-            $request->getRouter()->redirect("/news");
+            $request->getRouter()->redirect("/home");
         }
 
         return $next($request);

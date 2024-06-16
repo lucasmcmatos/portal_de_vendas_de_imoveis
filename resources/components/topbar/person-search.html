@@ -1,0 +1,49 @@
+<div class="btn btn-light d-none d-xl-inline-block ml-4 mw-50 navbar-search" style="background-color: #DCCCC3; border:1px solid #00000027;" data-toggle="modal" data-target="#buscaPersonalizadaModal">
+    Busca Personalizada
+</div>
+
+<!-- Modal de Busca Personalizada -->
+<div class="modal fade" id="buscaPersonalizadaModal" tabindex="-1" aria-labelledby="buscaPersonalizadaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="buscaPersonalizadaModalLabel">Busca Personalizada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="quantidadeFilhos">Quantidade de Filhos</label>
+                        <input type="number" class="form-control" id="quantidadeFilhos" name="quantidadeFilhos" placeholder="Quantidade de Filhos">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadeCarros">Quantidade de Carros</label>
+                        <input type="number" class="form-control" id="quantidadeCarros" name="quantidadeCarros" placeholder="Quantidade de Carros">
+                    </div>
+                    <div class="form-group">
+                        <label for="mediaSalarial">Média Salarial</label>
+                        <select class="form-control" id="mediaSalarial" name="mediaSalarial">
+                            <option>R$ 0,00 até R$ 2.112,00</option>
+                            <option>R$ 2.112,00 até R$ 2.826,65</option>
+                            <option>R$ 2.826,65 até R$ 3.751,05</option>
+                            <option>R$ 3.751,05 até R$ 4.664,68</option>
+                            <option>Acima de R$ 4.664,68</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="maritalStatus">Status Marital</label>
+                        <select class="form-control" id="maritalStatus" name="maritalStatus">
+                            <option>Solteiro(a)</option>
+                            <option>Casado(a)</option>
+                            <option>Divorciado(a)</option>
+                            <option>Viúvo(a)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-light" style="background-color: #DCCCC3; border:1px solid #00000027;">Atualizar perfil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>     

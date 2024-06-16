@@ -13,7 +13,7 @@ use \App\Utils\View;
 
 class Register {
 
-    public static function render($errorMessage = null) {
+    public static function render() {
         return View::render("pages/register/index", [
         ]);
     }

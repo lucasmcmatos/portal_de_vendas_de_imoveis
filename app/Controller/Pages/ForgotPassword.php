@@ -12,15 +12,11 @@ use \App\Session\Login as SessionLogin;
 
 
 
-class Login {
+class ForgotPassword {
 
     public static function render() {
-        return View::render("pages/login/index", [
+        return View::render("pages/forgot-password/index", [
         ]);
     }
 
-    public static function setLogout($request) {
-        SessionLogin::logout();
-        $request->getRouter()->redirect("/");
-    }
 }

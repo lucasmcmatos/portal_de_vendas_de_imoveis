@@ -8,7 +8,7 @@ use \App\Session\Login;
 class RequireAdmin {
     public function handle($request, $next) {
         if (!Login::isAdmin()) {
-            $request->getRouter()->redirect("/news");
+            $request->getRouter()->redirect("/home");
         }
 
         return $next($request);
