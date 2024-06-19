@@ -1,0 +1,544 @@
+<!-- Modal cadastro -->
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel"
+                    style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:25px; margin: 0;">
+                    Cadastro de Anúncio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <form id="register-form">
+                    <!-- Informações Básicas -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Informações Básicas</h5>
+                    <div class="mb-4">
+                        <div class="mb-3">
+                            <label for="register-title" class="form-label">Título do Anúncio</label>
+                            <input name="register-title" type="text" class="form-control" id="register-title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="register-description" class="form-label">Descrição do Anúncio</label>
+                            <textarea name="register-description" class="form-control" id="register-description" rows="3"
+                                required></textarea>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <!-- Informações Financeiras -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Informações Financeiras</h5>
+
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <label for="register-business-value" class="form-label">Valor</label>
+                            <input name="register-business-value" type="number" class="form-control" id="register-businnes-value" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="register-business-type" class="form-label">Tipo de Negócio</label>
+                            <select name="register-business-type" class="form-control" id="register-business-type" required>
+                                <option disabled selected value="">Selecione o tipo</option>
+                                <option  value="1">Aluguel</option>
+                                <option  value="2">Venda</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <!-- Detalhes do Imóvel -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Detalhes do Imóvel</h5>
+                    <div class="row mb-2">
+                        <div class="col-6 mb-2">
+                            <label for="areaConstruida" class="form-label">Área Construída (m²)</label>
+                            <input name="register-built-up-area" type="number" class="form-control" id="register-built-up-area" required>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <label for="register-bath-number" class="form-label">Numero de Banheiros</label>
+                            <input name="register-bath-number" type="number" class="form-control" id="register-bath-number"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <label for="register-romm-number" class="form-label">Quantidade de Cômodos</label>
+                            <input name="register-room-number" type="number" class="form-control" id="register-room-number" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="register-parking-spaces" class="form-label">Vagas na Garagem</label>
+                            <input name="register-parking-spaces" type="number" class="form-control" id="register-parking-spaces" required>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <label for="register-property-type" class="form-label">Tipo de Propriedade</label>
+                            <select name="register-property-type" class="form-control" id="register-property-type" required>
+                                <option disabled selected value="">Selecione o tipo</option>
+                                <option  value="1">Casa solta</option>
+                                <option  value="2">Casa de condomínio</option>
+                                <option  value="3">Apartamento</option>
+    
+    
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="register-solar-incidence" class="form-label">Tipo de Frente</label>
+                            <select name="register-solar-incidence" class="form-control" id="register-solar-incidence" required>
+                                <option disabled selected value="">Selecione o tipo</option>
+                                <option  value="1">Nascente</option>
+                                <option  value="2">Poente</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Características do Imóvel -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Características do Imóvel</h5>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input name="register-furnished" class="form-check-input" type="checkbox" id="register-furnished">
+                                <label class="form-check-label" for="register-furnished">Mobiliado</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input name="register-pool" class="form-check-input" type="checkbox" id="register-poll">
+                                <label class="form-check-label" for="register-pool">Piscina</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input name="register-barbecue" class="form-check-input" type="checkbox" id="register-barbecue">
+                                <label class="form-check-label" for="register-barbecue">Churrasqueira</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input name="register-sports-court" class="form-check-input" type="checkbox"
+                                    id="register-sports-court">
+                                <label class="form-check-label" for="register-sports-court">Quadra Esportiva</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Endereço -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Endereço</h5>
+                        <div class="mb-3" style="overflow: hidden">
+                            <label for="register-ZIP-code" class="form-label">CEP</label>
+                            <span id="register-ZIP-code-container" style="display: flex; position: relative" style="overflow: hidden">
+                                <input type="text" name="register-ZIP-code" id="register-ZIP-code" class="form-control w-100" style="overflow: hidden" />
+                                <button id="register-ZIP-code-button" class="text-white bg-secondary w-25" style="position: absolute; right: 3%; height: 100%; border: none"><img style="width: 50%; max-width: 30px;"
+                                    src="/sb-admin-2/img/magnifying-glass-bold.svg" alt="" />
+                                </button>
+                            </span>
+                        </div>
+                    <div class="row mb-3">
+                        
+                        <div class="col-6">
+                            <label for="register-state" class="form-label">Estado</label>
+                            <select name="register-state" class="form-control" id="register-state" required>
+                                <option disabled selected value="">Selecione o seu estado </option>
+                                <!-- Adicione mais opções conforme necessário -->
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="register-municipality" class="form-label">Cidade</label>
+                            <select name="register-municipality" class="form-control" id="register-municipality" required>
+                                <option disabled selected value="">Selecione a sua cidade</option>
+                                <!-- Adicione mais opções conforme necessário -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="register-neighborhood" class="form-label">Bairro</label>
+                        <input name="register-neighborhood" type="text" class="form-control" id="register-neighborhood" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="register-street" class="form-label">Logradouro</label>
+                        <input name="register-street" type="text" class="form-control" id="register-street" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="register-number" class="form-label">Número</label>
+                        <input name="register-number" type="text" class="form-control" id="register-number" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="register-complement" class="form-label">Complemento</label>
+                        <input name="register-complement" type="text" class="form-control" id="register-complement" required>
+                    </div>
+
+                    <hr>
+
+                    <!-- Imagens -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Imagens do Anúncio</h5>
+                    <div class="mb-3">
+                            <input type="file" name="advertisings-images[]" class="form-control cf-Input" id="advertisings-images-input" accept="image/*" multiple
+                            required>
+                        <div id="preview-images" class="mt-2"></div>
+                        <small id="imagensHelp" class="form-text text-muted">Selecione de 1 a 5 imagens para o
+                            anúncio.</small>
+                    </div>
+
+                    <hr>
+
+                    <button id="register-submit-button" class="btn btn-light">Criar Anúncio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    document.getElementById('advertisings-images-input').addEventListener('change', function (event) {
+        const files = event.target.files;
+        const previewContainer = document.getElementById('preview-images');
+        previewContainer.innerHTML = ''; // Limpa a pré-visualização anterior
+
+        // Verifica se o número de arquivos está entre 1 e 5
+        if (files.length < 1 || files.length > 5) {
+            alert('Selecione de 1 a 5 imagens.');
+            event.target.value = ''; // Limpa a seleção do arquivo
+            return;
+        }
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                const imgElement = document.createElement('img');
+                imgElement.src = reader.result;
+                imgElement.style.maxWidth = '100px'; // Ajuste o tamanho conforme necessário
+                imgElement.style.marginRight = '10px'; // Espaçamento entre imagens
+                previewContainer.appendChild(imgElement);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script>
+
+
+
+
+<script>
+
+
+
+     //Preparacao campo Estado
+     prepareStatesField();
+
+     async function prepareStatesField() {
+         const StateSelect = document.getElementById("register-state");
+
+         try{
+
+            const response = await fetch("/api/states");
+
+            const data = await response.json();
+    
+            if (data.success) {
+                for (const {name, code} of data.data) {
+                    const newOption = document.createElement("option");
+                    newOption.value = code;
+                    newOption.innerText = name;
+                    StateSelect.appendChild(newOption);
+                }
+            }        
+            
+            StateSelect.addEventListener("change", () => {
+                prepareMunicipalitiesField(StateSelect.value)
+            });
+
+         } catch(error) {
+            console.log(error);
+            return false;
+         }
+
+     }
+
+
+
+ 
+     async function prepareMunicipalitiesField(stateCode) {
+
+         const municipalityInput = document.getElementById("register-municipality");
+
+         const options = municipalityInput.options;
+
+         for (let i = options.length - 1; i >= 0; i--) {
+             if (options[i].value !== '') {
+                municipalityInput.remove(i);
+             }
+         }
+
+         municipalityInput.value = "";
+
+         try{
+
+            const response = await fetch("/api/municipalities/" + stateCode);
+
+            const data = await response.json();
+    
+            if (data.success) {
+                for (const {code, name} of data.data) {
+                    const newOption = document.createElement("option");
+                    newOption.value = code;
+                    newOption.innerText = name;
+                    municipalityInput.appendChild(newOption);
+                }
+            }
+
+         } catch(error){
+            console.log(error);
+            return false;
+         }
+
+     }
+ 
+ 
+ 
+
+
+
+     //Pesquisar Cep
+     const registerZIPCodeButton = document.getElementById("register-ZIP-code-button");
+ 
+     registerZIPCodeButton.addEventListener("click", async (event) => {
+         event.preventDefault();
+         const ZIPCodeInput = document.getElementById("register-ZIP-code");
+         const ZIPCodeValue = ZIPCodeInput.value;
+ 
+         if (/^[0-9]{8}$/.test(ZIPCodeValue)) {
+
+
+             const response = await fetch(`https://viacep.com.br/ws/${ZIPCodeValue}/json/`, {
+                 method: "GET",
+                 mode: "cors",
+             });
+ 
+             const data = await response.json();
+ 
+             if (data.erro) {
+                Swal.fire({
+                    title: "Erro ao pesquisar o CEP",
+                    text: "Por favor, escreva um CEP válido e tente novamente.",
+                    icon: "error",
+                    position: "center",
+                });
+
+             } else {
+                fillAddress(data);
+             }
+         } else {
+            Swal.fire({
+                title: "CEP inválido",
+                text: "Por favor, escreva um CEP válido e tente novamente.",
+                icon: "error",
+                position: "center",
+            });
+         }
+         
+     })
+ 
+     async function fillAddress(data) {
+
+         const street = document.querySelector("#register-street");
+         const neighborhood = document.querySelector("#register-neighborhood");
+         const complement = document.querySelector("#register-complement");
+         const state = document.querySelector("#register-state");
+         const municipality = document.querySelector("#register-municipality");
+ 
+         street.value = data.logradouro;
+         neighborhood.value = data.bairro;
+         complement.value = data.complemento;
+
+
+         const stateCode = data.ibge.slice(0,2);
+         await prepareMunicipalitiesField(stateCode);
+ 
+         state.value = stateCode;
+         municipality.value = data.ibge;
+     }
+
+
+
+     async function prepareBusinessTypeField() {
+        const businessTypeSelect = document.getElementById("register-business-type");
+
+        try{
+
+           const response = await fetch("/api/business-types");
+
+           const data = await response.json();
+   
+           if (data.success) {
+               for (const {id, type} of data.data) {
+                   const newOption = document.createElement("option");
+                   newOption.value = id;
+                   newOption.innerText = type;
+                   businessTypeSelect.appendChild(newOption);
+               }
+           }        
+           
+        } catch(error) {
+           console.log(error);
+           return false;
+        }
+
+    }
+
+
+    
+    async function preparePropertyTypeField() {
+        const propertyTypeSelect = document.getElementById("register-property-type");
+
+        try{
+
+           const response = await fetch("/api/property-types");
+
+           const data = await response.json();
+   
+           if (data.success) {
+               for (const {id, type} of data.data) {
+                   const newOption = document.createElement("option");
+                   newOption.value = id;
+                   newOption.innerText = type;
+                   propertyTypeSelect.appendChild(newOption);
+               }
+           }        
+           
+        } catch(error) {
+           console.log(error);
+           return false;
+        }
+
+    }
+
+    
+
+    async function prepareSolarIncidenceField() {
+        const solarIncidenceSelect = document.getElementById("register-solar-incidence");
+
+        try{
+
+           const response = await fetch("/api/solar-incidences");
+
+           const data = await response.json();
+   
+           if (data.success) {
+               for (const {id, incidence} of data.data) {
+                   const newOption = document.createElement("option");
+                   newOption.value = id;
+                   newOption.innerText = incidence;
+                   solarIncidenceSelect.appendChild(newOption);
+               }
+           }        
+           
+        } catch(error) {
+           console.log(error);
+           return false;
+        }
+
+    }
+
+</script>
+
+
+
+
+
+
+<script>
+
+    const registerSubmitButton = document.getElementById("register-submit-button");
+
+    registerSubmitButton.addEventListener("click", async (event) => {
+
+
+    console.log(registerSubmitButton);
+
+      event.preventDefault();
+  
+      Swal.fire({
+        title: "Cadastrando anúncio...",
+        didOpen: async () => {
+          Swal.showLoading();
+          document.getElementById("register-modal").style.display = "none";
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+      }); 
+
+
+
+      const response = await registerAdvertising();
+    
+    
+      if (response.success) {
+        Swal.fire({
+          title: "Anúncio cadastrado com sucesso!",
+          icon: "success",
+        }).then(() => {
+          window.location.reload();
+        });
+  
+      } else {
+        Swal.fire({
+          title: "Falha ao cadastrar anúncio!",
+          html: response.message,
+          icon: "error",
+        }).then(() => {
+          document.getElementById("register-modal").style.display = "block";
+        });
+      }
+
+    });
+  
+
+    async function registerAdvertising() {
+        //try{
+
+            var form = document.getElementById("register-form");
+            var formData = new FormData(form);
+
+
+            var response = await fetch("/api/register-advertising", {
+                method: "POST",
+                body: formData
+            });
+
+
+            var data = await response.json();
+
+            return data;
+
+        //} catch(error){
+            //console.log(error)
+        //}
+
+    }
+
+</script>

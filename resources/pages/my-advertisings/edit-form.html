@@ -1,0 +1,303 @@
+<!-- Edit Modal -->
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel"
+                    style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:25px; margin: 0;">Editar
+                    Anúncio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <!-- Informações Básicas -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Informações Básicas</h5>
+                    <div class="mb-4">
+                        <div class="mb-3">
+                            <label for="tituloAnuncio" class="form-label">Título do Anúncio</label>
+                            <input name="title" type="text" class="form-control" id="tituloAnuncio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descricaoAnuncio" class="form-label">Descrição do Anúncio</label>
+                            <textarea name="description" class="form-control" id="descricaoAnuncio" rows="3"
+                                required></textarea>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <!-- Informações Financeiras -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Informações Financeiras</h5>
+
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <label for="valor" class="form-label">Valor</label>
+                            <input name="businessValue" type="number" class="form-control" id="valor" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="tipoNegocio" class="form-label">Tipo de Negócio</label>
+                            <select name="businessType" class="form-control" id="tipoNegocio" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="1">Aluguel</option>
+                                <option value="2">Venda</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <!-- Detalhes do Imóvel -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Detalhes do Imóvel</h5>
+                    <div class="row mb-2">
+                        <div class="col-6 mb-2">
+                            <label for="areaConstruida" class="form-label">Área Construída (m²)</label>
+                            <input name="builtUparea" type="number" class="form-control" id="areaConstruida" required>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <label for="quantidadeBanheiros" class="form-label">Numero de Banheiros</label>
+                            <input name="bathNumber" type="number" class="form-control" id="quantidadeBanheiros"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <label for="quantidadeComodos" class="form-label">Quantidade de Cômodos</label>
+                            <input name="roomNumber" type="number" class="form-control" id="quantidadeComodos" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="vagasGaragem" class="form-label">Vagas na Garagem</label>
+                            <input name="parkingSpaces" type="number" class="form-control" id="vagasGaragem" required>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <label for="tipoPropriedade" class="form-label">Tipo de Propriedade</label>
+                            <select name="propertyType" class="form-control" id="tipoPropriedade" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="1">Casa Solta</option>
+                                <option value="2">Casa de Condomínio</option>
+                                <option value="3">Apartamento</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="tipoFrente" class="form-label">Tipo de Frente</label>
+                            <select name="solarIncidence" class="form-control" id="tipoFrente" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="1">Nascente</option>
+                                <option value="2">Poente</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Características do Imóvel -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Características do Imóvel</h5>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input name="furnished" class="form-check-input" type="checkbox" id="mobiliado">
+                                <label class="form-check-label" for="mobiliado">Mobiliado</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input name="pool" class="form-check-input" type="checkbox" id="comPiscina">
+                                <label class="form-check-label" for="comPiscina">Piscina</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input name="barbecue" class="form-check-input" type="checkbox" id="comChurrasqueira">
+                                <label class="form-check-label" for="comChurrasqueira">Churrasqueira</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input name="sportsCount" class="form-check-input" type="checkbox"
+                                    id="comQuadraEsportiva">
+                                <label class="form-check-label" for="comQuadraEsportiva">Quadra Esportiva</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Endereço -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Endereço</h5>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select name="state" class="form-control" id="estado" required>
+                                <option value="">Selecione o estado</option>
+                                <option value="1">Estado 1</option>
+                                <option value="2">Estado 2</option>
+                                <option value="3">Estado 3</option>
+                                <!-- Adicione mais opções conforme necessário -->
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="cidade" class="form-label">Cidade</label>
+                            <select name="municipality" class="form-control" id="cidade" required>
+                                <option value="">Selecione a cidade</option>
+                                <option value="1">Cidade 1</option>
+                                <option value="2">Cidade 2</option>
+                                <option value="3">Cidade 3</option>
+                                <!-- Adicione mais opções conforme necessário -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input name="naighborhood" type="text" class="form-control" id="bairro" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="logradouro" class="form-label">Logradouro</label>
+                        <input name="street" type="text" class="form-control" id="logradouro" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numero" class="form-label">Número</label>
+                        <input name="number" type="text" class="form-control" id="numero" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cep" class="form-label">CEP</label>
+                        <input name="ZIPcode" type="text" class="form-control" id="cep" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="complemento" class="form-label">Complemento</label>
+                        <input name="complement" type="text" class="form-control" id="complemento" required>
+                    </div>
+
+                    <hr>
+
+                    <!-- Imagens -->
+                    <h5 class="mb-2"
+                        style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:20px; margin: 0;">
+                        Imagens do Anúncio</h5>
+                    <div class="mb-3">
+                        <label for="imagem1" class="form-label">Imagem 1</label>
+                        <input type="file" class="form-control cf-Input" id="imagem1" accept="image/*">
+                        <div id="preview1" class="mt-2"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imagem2" class="form-label">Imagem 2</label>
+                        <input type="file" class="form-control cf-Input" id="imagem2" accept="image/*">
+                        <div id="preview2" class="mt-2"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imagem3" class="form-label">Imagem 3</label>
+                        <input type="file" class="form-control cf-Input" id="imagem3" accept="image/*">
+                        <div id="preview3" class="mt-2"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imagem4" class="form-label">Imagem 4</label>
+                        <input type="file" class="form-control cf-Input" id="imagem4" accept="image/*">
+                        <div id="preview4" class="mt-2"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imagem5" class="form-label">Imagem 5</label>
+                        <input type="file" class="form-control cf-Input" id="imagem5" accept="image/*">
+                        <div id="preview5" class="mt-2"></div>
+                    </div>
+
+                    <hr>
+
+                    <button id="submitButton" type="submit" class="btn btn-light">Salvar Anúncio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    
+
+
+
+    // Suponha que você tenha URLs das imagens do banco de dados (exemplo)
+    // Array de URLs das imagens do banco de dados (exemplo)
+    var imagensSalvas = [
+        null,
+        null,
+        null,
+        null, // Se não houver imagem, deixe como null
+        null  // Se não houver imagem, deixe como null
+    ];
+
+    // Função para carregar imagens salvas nos previews
+    function carregarImagensSalvas() {
+        for (var i = 0; i < imagensSalvas.length; i++) {
+            var url = imagensSalvas[i];
+            if (url) {
+                exibirImagemNoPreview(url, i + 1); // i + 1 para corresponder ao ID correto do preview
+            }
+        }
+    }
+
+    // Função para exibir uma imagem no preview
+    function exibirImagemNoPreview(url, id) {
+        var img = document.createElement('img');
+        img.src = url;
+        img.style.maxWidth = '100px'; // Ajuste o tamanho conforme necessário
+
+        var previewDiv = document.getElementById('preview' + id);
+        previewDiv.innerHTML = ''; // Limpa o conteúdo anterior
+        previewDiv.appendChild(img);
+    }
+
+    // Função para lidar com a seleção de arquivo e exibir a imagem no preview
+    function handleFileSelect(event, id) {
+        var input = event.target;
+        var file = input.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                exibirImagemNoPreview(e.target.result, id);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // Se o usuário cancelar a seleção do arquivo, limpe o preview
+            var previewDiv = document.getElementById('preview' + id);
+            previewDiv.innerHTML = '';
+        }
+    }
+
+    // Adicionar eventos de mudança para cada input de imagem
+    document.getElementById('imagem1').addEventListener('change', function (event) {
+        handleFileSelect(event, 1);
+    });
+    document.getElementById('imagem2').addEventListener('change', function (event) {
+        handleFileSelect(event, 2);
+    });
+    document.getElementById('imagem3').addEventListener('change', function (event) {
+        handleFileSelect(event, 3);
+    });
+    document.getElementById('imagem4').addEventListener('change', function (event) {
+        handleFileSelect(event, 4);
+    });
+    document.getElementById('imagem5').addEventListener('change', function (event) {
+        handleFileSelect(event, 5);
+    });
+
+    // Chama a função para carregar imagens salvas ao carregar a página
+    document.addEventListener('DOMContentLoaded', function () {
+        carregarImagensSalvas();
+    });
+</script>

@@ -17,7 +17,7 @@ class Favorite {
         try {
             $success = (new Database("favorite"))->insert([
                 "code" => $this->advertising,
-                "acronym" => $this->user,
+                "user" => $this->user
             ]);
 
             return [
@@ -31,6 +31,8 @@ class Favorite {
             ];
         }
     }
+
+
 
 
     static public function get() {
@@ -121,6 +123,34 @@ class Favorite {
             ];
         }
     }
+
+
+
+    static public function getByUser($userId) {
+        try {
+            if ($favoriteObjectsList = (new Database("favorite"))
+                ->select(["*"], "user=?", [$userId])) {
+                
+                return [
+                    "success" => true,
+                    "value" => $favoriteObjectsList,
+                    "message"  =>  "",
+                ];
+            }
+
+            return [
+                "success" => false,
+                "message"  =>  "Falha ao encontrar favorito.",
+            ];
+
+        } catch (PDOException $err) {
+            return [
+                "success" => false,
+                "message" => $err->getMessage(),
+            ];
+        }
+    }
+
 
 
 

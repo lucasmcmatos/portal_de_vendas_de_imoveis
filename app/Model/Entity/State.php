@@ -38,7 +38,9 @@ class State {
     static public function get() {
 
         try {
-            if($stateObjectsList = (new Database("state"))->select(["*"], "", [])) {
+
+
+            if($stateObjectsList = (new Database("state"))->select(["code", "name"], "", [], "ORDER BY name")) {
 
                 return [
                     "success" => true,
@@ -103,6 +105,32 @@ class State {
         try {
             if ($stateObjectsList = (new Database("state"))
                 ->select(["*"], "id=?", [$id])) {
+                
+                return [
+                    "success" => true,
+                    "value" => $stateObjectsList,
+                    "message"  =>  "",
+                ];
+            }
+
+            return [
+                "success" => false,
+                "message"  =>  "Falha ao encontrar estado.",
+            ];
+
+        } catch (PDOException $err) {
+            return [
+                "success" => false,
+                "message" => $err->getMessage(),
+            ];
+        }
+    }
+
+
+    static public function getCountByStateCode($stateCode) {
+        try {
+            if ($stateObjectsList = (new Database("state"))
+                ->select(["COUNT(*) as quantity"], "code=?", [$stateCode])) {
                 
                 return [
                     "success" => true,

@@ -25,12 +25,16 @@ class Database {
         static::$dbPort = $dbPort;
     }
 
-    public function select($columns = ["*"], $condition = "", $values = [], $order = "") {
 
-        try {
+
+
+    public function select($columns = ["*"], $condition = "", $values = [], $order = "", $join = "") {
+
+        // try {
             $columns = join(", ", $columns);
-            $query = "SELECT $columns FROM $this->tableName";
-    
+            $query = "SELECT $columns FROM $this->tableName $join";
+
+
             if ($condition) {
                 $query .= " WHERE $condition $order";
                 $stmt = $this->conn->prepare($query);
@@ -45,9 +49,9 @@ class Database {
             
             return $stmt = $this->conn->query($query);
 
-        } catch (PDOException $err) {
-            return false;
-        }
+        // } catch (PDOException $err) {
+        //     return false;
+        // }
 
     }
 
@@ -55,18 +59,22 @@ class Database {
 
 
     public function insert($columns) {
-        try{
+        // try{
             $values = array_values($columns);
             $keys = join(", ", array_keys($columns));
             $valuesField = join(", ",  array_fill(0, count($columns), "?"));
             $query = "INSERT INTO $this->tableName ($keys) VALUES ($valuesField)";
     
             $stmt = $this->conn->prepare($query);
-            return $stmt->execute($values);
+            if($stmt->execute($values)){
+                return $this->conn;
+            }
 
-        } catch(PDOException $err){
-            return false;  
-        }
+            return false;
+
+        // } catch(PDOException $err){
+        //     return false;  
+        // }
     }
 
 

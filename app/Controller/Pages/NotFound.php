@@ -8,6 +8,6 @@ use \App\Utils\View;
 
 class NotFound {
     public static function render() {
-        return View::render("pages/404");
+        return View::render("pages/404/index");
     }
 }

@@ -4,8 +4,11 @@ namespace App\Core;
 require_once(__DIR__."/../Model/Entity/User.php");
 
 use \App\Model\Entity\User as UserEntity;
+use DateTime;
 
 class UserValidation {
+
+    private static string $password;
 
     static $validateMap = [
         "firstName" => [
@@ -44,6 +47,14 @@ class UserValidation {
             "label" => "senha",
             "selector" => "password",
             "validate" => "\App\Core\UserValidation::password",
+            "required" => true,
+            "unique" => false,
+        ],
+
+        "confirmPassword" => [
+            "label" => "confirmação de senha",
+            "selector" => "confirmPassword",
+            "validate" => "\App\Core\UserValidation::confirmPassword",
             "required" => true,
             "unique" => false,
         ],
@@ -126,6 +137,19 @@ class UserValidation {
 
 
     private static function birthDate($birthDate) {
+        $birthDateRegex = "/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/";
+
+        if (!preg_match($birthDateRegex, $birthDate)) {
+            return ["success" => false, "message" => "<strong>Data de nascimento</strong> inválida!"];
+        }
+
+
+        $now = new DateTime();
+        $birthDate = new DateTime($birthDate);
+
+        if($birthDate->diff($now)->y <= 12){
+            return ["success" => false, "message" => "Você deve ter pelo menos 13 anos para realizar cadastro na plataforma."];
+        }
 
 
         return ["success" => true, "message" => ""];
@@ -134,10 +158,24 @@ class UserValidation {
 
 
     private static function password($password) {
+
         $passwordRegex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\.])[A-Za-z\d@$!%*?&\.]{8,}$/";
 
         if (!preg_match($passwordRegex, $password)) {
-            return ["success" => false, "message" => "<strong>Senha</strong> não é forte o suficiente."];
+            return ["success" => false, "message" => "A <strong>senha</strong> não é forte o suficiente. 
+            Necessário ter pelo menos 8 caracteres, 1 letra minúscula, 1 letra maiúscula, 1 algarismo e um caractere especial (@$!%*?&.)"];
+        }
+
+        self::$password = $password;
+
+        return ["success" => true, "message" => ""];
+    }
+
+
+    private static function confirmPassword($confirmPassword) {
+
+        if (self::$password != $confirmPassword) {
+            return ["success" => false, "message" => "As senhas não coincidem. Por favor, verifique e tente novamente."];
         }
 
         return ["success" => true, "message" => ""];
@@ -193,7 +231,25 @@ class UserValidation {
 
     private static function phone($phone) {
 
-        return ["success" => true, "message" => ""];
+        // $phoneRegex = "/^\([0-9]{2}\)\s[0-9]{4,5}-[0-9]{4}$/";
+        // $phoneRegexMatch = preg_match($phoneRegex, $phone);
+
+        // $phone = preg_replace("/[^0-9]/", "", $phone);
+
+        // if ($phoneRegexMatch && strlen($phone) <= 11) {
+        //     return [
+        //         "success" => true, 
+        //         "message" => "Telefone válido"
+        //     ];
+        // }
+
+        return [
+            "success" => true, 
+            "message" => "Telefone válido"
+        ];
+
+
+
     }
 
 
@@ -213,7 +269,19 @@ class UserValidation {
 
     private static function whatsapp($whastapp) {
 
-        return ["success" => true, "message" => ""];
+        // $whatsappRegex = "/^\([0-9]{2}\)\s[0-9]{5}-[0-9]{4}$/";
+        // $whatsappRegexMatch = preg_match($whatsappRegex, $whastapp);
+
+        // $phone = preg_replace("/[^0-9]/", "", $whastapp);
+
+        // if ($whatsappRegexMatch && strlen($phone) == 11) {
+        //     return [
+        //         "success" => true, 
+        //         "message" => "Whatsapp válido"
+        //     ];
+        // }
+
+        return ["success" => true, "message" => "Whatsapp válido"];
     }
 
 
@@ -263,7 +331,7 @@ class UserValidation {
                 }
 
                 if (!$isUnique["value"]) {
-                    return ["success" => false, "message" => "Valor de <strong>".$settings["label"]."</strong> já existe."];
+                    return ["success" => false, "message" =>  "Valor de <strong>".$settings["label"]."</strong> já cadastrado."];
                 }
             }
 

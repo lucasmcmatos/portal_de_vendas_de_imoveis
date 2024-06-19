@@ -22,11 +22,16 @@ require_once(__DIR__ . "/../app/Controller/Pages/Register.php");
 require_once(__DIR__ . "/../app/Controller/Pages/Login.php");
 require_once(__DIR__ . "/../app/Controller/Pages/ForgotPassword.php");
 require_once(__DIR__ . "/../app/Controller/Pages/PlatformAdvertising.php");
+require_once(__DIR__ . "/../app/Controller/Pages/OpenAdvertising.php");
+require_once(__DIR__ . "/../app/Controller/Pages/MyAdvertisings.php");
+require_once(__DIR__ . "/../app/Controller/Pages/FavoritesAdvertising.php");
+require_once(__DIR__ . "/../app/Controller/Pages/NotFound.php");
+
 
 
 
 // require_once(__DIR__ . "/../app/Controller/Pages/RegisterUser.php");
-require_once(__DIR__ . "/../app/Controller/Pages/NotFound.php");
+
 // require_once(__DIR__ . "/../app/Controller/Pages/Settings.php");
 // require_once(__DIR__ . "/../app/Controller/Pages/News.php");
 // require_once(__DIR__ . "/../app/Controller/Pages/RegisterNews.php");
@@ -34,11 +39,21 @@ require_once(__DIR__ . "/../app/Controller/Pages/NotFound.php");
 
 
 require_once(__DIR__ . "/../app/Controller/Api/User.php");
+require_once(__DIR__ . "/../app/Controller/Api/Advertising.php");
+require_once(__DIR__ . "/../app/Controller/Api/State.php");
+require_once(__DIR__ . "/../app/Controller/Api/Municipality.php");
+require_once(__DIR__ . "/../app/Controller/Api/BusinessType.php");
+require_once(__DIR__ . "/../app/Controller/Api/PropertyType.php");
+require_once(__DIR__ . "/../app/Controller/Api/SolarIncidence.php");
+
 // require_once(__DIR__ . "/../app/Controller/Api/News.php");
 
 
 // require_once(__DIR__ . "/../app/Controller/Images/User.php");
 // require_once(__DIR__ . "/../app/Controller/Images/News.php");
+
+
+require_once(__DIR__ . "/../app/Controller/Images/Advertising.php");
 
 
 
@@ -57,21 +72,25 @@ use \App\Controller\Pages\Register;
 use \App\Controller\Pages\Login;
 use \App\Controller\Pages\ForgotPassword;
 use \App\Controller\Pages\PlatformAdvertising;
-
-// use \App\Controller\Pages\RegisterUser;
+use App\Controller\Pages\OpenAdvertising;
+use App\Controller\Pages\MyAdvertisings;
+use App\Controller\Pages\FavoritesAdvertising;
 use \App\Controller\Pages\NotFound;
-// use \App\Controller\Pages\Settings;
-// use \App\Controller\Pages\News;
 
 
 use \App\Controller\Api\User as UserApi;
-
+use \App\Controller\Api\Advertising as AdvertisingApi;
+use \App\Controller\Api\State as StateApi;
+use \App\Controller\Api\Municipality as MunicipalityApi;
+use \App\Controller\Api\BusinessType as BusinessTypeApi;
+use \App\Controller\Api\PropertyType as PropertyTypeApi;
+use \App\Controller\Api\SolarIncidence as SolarIncidenceApi;
+use App\Model\Entity\BusinessType;
+use App\Model\Entity\PropertyType;
 
 // use \App\Controller\Api\News as NewsApi;
-
-
 // use \App\Controller\Images\User as UserImage;
-// use \App\Controller\Images\News as NewsImage;
+use \App\Controller\Images\Advertising as AdvertisingImage;
 
 
 
@@ -93,6 +112,10 @@ Database::config("localhost", "imobile_on", "root", "Batatafrita0132@");
 $objRouter = new Router(URL);
 
 
+
+
+
+//----------------------------------- Required Logout ---------------------------------//
 
 $objRouter->get("/",  [
     "middlewares" => [
@@ -150,6 +173,21 @@ $objRouter->get("/platform-advertising-out",  [
 
 
 
+$objRouter->get("/open-advertising-out/{id}",  [
+    "middlewares" => [
+        "requireLogout",
+    ],
+    function ($request, $id) {
+        return new Response(200, OpenAdvertising::render($request, $id));
+    }
+]);
+
+
+
+
+
+
+//----------------------------------- Required Login -----------------------------------//
 
 $objRouter->get("/home",  [
     "middlewares" => [
@@ -169,6 +207,42 @@ $objRouter->get("/platform-advertising",  [
         return new Response(200, PlatformAdvertising::render($request));
     }
 ]);
+
+
+
+$objRouter->get("/open-advertising/{id}",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request, $id) {
+        return new Response(200, OpenAdvertising::render($request, $id));
+    }
+]);
+
+
+
+$objRouter->get("/my-advertisings",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, MyAdvertisings::render($request));
+    }
+]);
+
+
+
+
+$objRouter->get("/favorites",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, FavoritesAdvertising::render($request));
+    }
+]);
+
+
 
 
 
@@ -252,8 +326,6 @@ $objRouter->get("/logout",  [
 // API SECTION
 
 
-
-
 $objRouter->post("/api/register",  [
     "middlewares" => [
         "requireLogout",
@@ -274,6 +346,87 @@ $objRouter->post("/api/login",  [
 ]);
 
 
+
+$objRouter->get("/api/platform-advertisings-cards",  [
+    function ($request) {
+        return new Response(200, AdvertisingApi::getPlatformAdvertisingsCardInformation($request), "application/json");
+    }
+]);
+
+
+
+$objRouter->post("/api/register-advertising",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, AdvertisingApi::register($request));
+    }
+]);
+
+
+
+$objRouter->get("/api/states",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, StateApi::get($request));
+    }
+]);
+
+
+
+
+$objRouter->get("/api/municipalities/{state}",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request, $state) {
+        return new Response(200, MunicipalityApi::getByState($request, $state));
+    }
+]);
+
+
+
+$objRouter->get("/api/property-types",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, PropertyTypeApi::get($request));
+    }
+]);
+
+
+
+
+$objRouter->get("/api/solar-incidences",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, SolarIncidenceApi::get($request));
+    }
+]);
+
+
+
+
+$objRouter->get("/api/business-types",  [
+    "middlewares" => [
+        "requireLogin",
+    ],
+    function ($request) {
+        return new Response(200, BusinessTypeApi::get($request));
+    }
+]);
+
+
+
+
+
+
 // USER
 // $objRouter->post("/api/user/register",  [
 //     "middlewares" => [
@@ -286,15 +439,15 @@ $objRouter->post("/api/login",  [
 
 
 
-$objRouter->post("/api/user/delete",  [
-    "middlewares" => [
-        "requireLogin",
-        "requireAdmin",
-    ],
-    function ($request) {
-        return new Response(200, UserApi::delete($request), "application/json");
-    }
-]);
+// $objRouter->post("/api/user/delete",  [
+//     "middlewares" => [
+//         "requireLogin",
+//         "requireAdmin",
+//     ],
+//     function ($request) {
+//         return new Response(200, UserApi::delete($request), "application/json");
+//     }
+// ]);
 
 
 
@@ -309,32 +462,32 @@ $objRouter->post("/api/user/delete",  [
 
 
 
-$objRouter->post("/api/user/random-password", [
-    "middlewares" => [
-        "requireLogin",
-        "requireAdmin",
-    ],
-    function ($request) {
-        return new Response(200, UserApi::setRandomPassword($request), "application/json");
-    }
-]);
+// $objRouter->post("/api/user/random-password", [
+//     "middlewares" => [
+//         "requireLogin",
+//         "requireAdmin",
+//     ],
+//     function ($request) {
+//         return new Response(200, UserApi::setRandomPassword($request), "application/json");
+//     }
+// ]);
 
 
 
-$objRouter->post("/api/user/general", [
-    "middlewares" => [],
-    function ($request) {
-        return new Response(200, UserApi::editFields($request), "application/json");
-    }
-]);
+// $objRouter->post("/api/user/general", [
+//     "middlewares" => [],
+//     function ($request) {
+//         return new Response(200, UserApi::editFields($request), "application/json");
+//     }
+// ]);
 
 
 
-$objRouter->get("/api/user/{id}", [
-    function ($request, $id) {
-        return new Response(200, UserApi::get($request, $id), "application/json");
-    }
-]);
+// $objRouter->get("/api/user/{id}", [
+//     function ($request, $id) {
+//         return new Response(200, UserApi::get($request, $id), "application/json");
+//     }
+// ]);
 
 
 
@@ -491,6 +644,29 @@ $objRouter->get("/api/user/{id}", [
 //         return NewsImage::getNewsImage($imageName);
 //     }
 // ]);
+
+
+
+
+
+
+// //-------------------------- Advertising Image --------------------------//
+
+
+
+// Get News Image
+ $objRouter->get("/image/advertising/{relativeImagePath}", [
+     function ($relativeImagePath) {
+        return AdvertisingImage::getAdvertisingImage($relativeImagePath);
+     }
+ ]);
+
+
+
+
+
+
+
 
 
 

@@ -20,7 +20,7 @@ class Address {
 
     public function insert() {
         try {
-            $success = (new Database("address"))->insert([
+            $pdo = (new Database("address"))->insert([
                 "municipality" => $this->municipality,
                 "neighborhood" => $this->neighborhood,
                 "street" => $this->street,
@@ -29,10 +29,21 @@ class Address {
                 "complement" => $this->complement
             ]);
 
+
+            if($pdo == false){
+                return [
+                    "success" => false,
+                    "message" => "Falha ao cadastrar endereço",
+                ];
+            }
+
             return [
-                "success" => $success,
-                "message" => ""
+                "success" => true,
+                "pdo" => $pdo,
+                "message" => "Endereço cadastrado com sucesso!"
             ];
+
+
         } catch (PDOException $err) {
             return [
                 "success" => false,
@@ -131,7 +142,7 @@ class Address {
         }
     }
 
-
+    
 
     public static function isUnique($field, $value) {
 

@@ -1,0 +1,34 @@
+
+
+<!--Favorite Visitor Modal-->
+<div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="favoriteModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="favoriteModalLabel">Necessário autenticar-se!</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Para acessar essa e outras funcionalidades, cadastre-se e faça login no sistema.</div>
+        <div class="modal-footer">
+
+            <a class="btn btn-primary" href="/register">Cadastrar-se</a>
+            <a class="btn btn-primary" href="/login">Efetuar login</a>
+            
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--Modify Favorite Button for Visitor-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const favoriteButton = document.getElementById("favorite-button");
+        favoriteButton.setAttribute('data-toggle', 'modal');
+        favoriteButton.setAttribute('data-target', '#favoriteModal');
+    });
+
+</script>

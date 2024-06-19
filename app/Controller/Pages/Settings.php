@@ -1,4 +1,6 @@
 <?php
+
+/*
 namespace App\Controller\Pages;
 
 require_once(__DIR__."/../../Model/Entity/User.php");
@@ -44,4 +46,4 @@ class Settings extends Page {
         return parent::renderPage("Configurações", $content);
     }
 
-}
+}*/

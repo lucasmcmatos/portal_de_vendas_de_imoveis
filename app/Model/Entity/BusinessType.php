@@ -33,7 +33,7 @@ class BusinessType {
     static public function get() {
 
         try {
-            if($businessTypeObjectsList = (new Database("business_type"))->select(["*"], "", [])) {
+            if($businessTypeObjectsList = (new Database("business_type"))->select(["*"], "", [], "ORDER BY id")) {
 
                 return [
                     "success" => true,

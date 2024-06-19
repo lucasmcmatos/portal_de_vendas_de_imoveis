@@ -24,6 +24,8 @@ class User {
             $formFields = $request->getPostVars();
 
 
+
+
             $formFields["cpf"] = preg_replace("/[^0-9]/", "", $formFields["cpf"] ?? "");
 
 
@@ -33,16 +35,18 @@ class User {
                 "email" => $formFields["email"],
                 "birthDate" => $formFields["birthDate"],
                 "password" => $formFields["password"],
+                "confirmPassword" => $formFields["confirmPassword"],
                 "cpf" => $formFields["cpf"],
-                "phone" => $formFields["phone"],
+                "phone" => preg_replace("/[^0-9]/", "" , $formFields["phone"]),
                 "instagram" => $formFields["instagram"],
-                "whatsapp" => $formFields["whatsapp"]
+                "whatsapp" => preg_replace("/[^0-9]/", "" ,$formFields["whatsapp"])
             ]);
 
 
             if (!$validation["success"]) {
                 return json_encode($validation);
             }
+
 
 
             $objUser = new UserEntity();
@@ -60,9 +64,9 @@ class User {
             $objUser->privilege = 0;
 
 
-            $success = $objUser->insert();
+            $result = $objUser->insert();
 
-            if (!$success) {
+            if (!$result["success"]) {
                 return json_encode([
                     "success" => false,
                     "message" => "Erro na conexão. Tente novamente."

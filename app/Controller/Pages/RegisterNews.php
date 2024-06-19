@@ -15,7 +15,7 @@ class RegisterNews extends Page {
 
     private static function render($request, $path, $id = "") {
 
-        $result = NewsEntity::getNewsById($id);
+        $result = NewsEntity::getById($id);
 
         $objNews = new NewsEntity();
 

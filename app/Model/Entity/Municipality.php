@@ -62,6 +62,64 @@ class Municipality {
 
 
 
+
+    static public function getByState($state) {
+
+        try {
+            if($municipalityObjectsList = (new Database("municipality"))->select(["code", "name"], "state=?", [$state], "ORDER BY name")) {
+
+                return [
+                    "success" => true,
+                    "message" => "",
+                    "value" => $municipalityObjectsList,
+                ];
+            }
+
+            return [
+                "success" => false,
+                "message" => "Falha ao encontrar municípios.",
+            ];
+
+        } catch (PDOException $err) {
+            return [
+                "success" => false,
+                "message" => $err->getMessage(),
+            ];
+        }
+    }
+
+
+
+
+    
+    static public function getCountByMunicipalityCode($municipalityCode) {
+        try {
+            if ($municipalityObjectsList = (new Database("municipality"))
+                ->select(["COUNT(*) as quantity"], "code=?", [$municipalityCode])) {
+                
+                return [
+                    "success" => true,
+                    "value" => $municipalityObjectsList,
+                    "message"  =>  "",
+                ];
+            }
+
+            return [
+                "success" => false,
+                "message"  =>  "Falha ao encontrar município.",
+            ];
+
+        } catch (PDOException $err) {
+            return [
+                "success" => false,
+                "message" => $err->getMessage(),
+            ];
+        }
+    }
+
+
+
+
     public function delete() {
         try {
             $success = (new Database("municipality"))->delete("id=?", [$this->id]);

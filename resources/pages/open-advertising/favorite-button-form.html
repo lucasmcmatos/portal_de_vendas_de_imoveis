@@ -1,0 +1,118 @@
+<form id="favorite-button-form" style="display: none;">
+    <input id="favorite-button-input" {{checked}}  type="checkbox" />
+</form>
+
+
+<script>
+
+
+    document.addEventListener("DOMContentLoad", function () {
+
+        const favoriteButton = document.getElementById("favorite-button");
+
+
+        console.log(favoriteButton);
+
+        const favoriteForm = document.createElement('form');
+        favoriteForm.setAttribute('style', 'display: none;')
+
+        const favoriteInput = document.createElement('input');
+        favoriteInput.setAttribute('type', 'checkbox');
+
+        favoriteForm.appendChild(favoriteInput);
+
+        favoriteButton.appendChild(favoriteForm);
+
+        favoriteInput.checked = Boolean("{{favoriteInputChecked}}");
+
+
+        favoriteInput.name = "favorite-input-" + "{{advertisingId}}";
+
+        const favoriteIcon = favoriteButton.querySelector("i");
+
+        favoriteIcon.style.color = Boolean("{{favoriteInputChecked}}") ? "red" : "#858796";
+
+
+        const favoriteLabel = favoriteButton.querySelector("span");
+        favoriteLabel.innerHTML = Boolean("{{favoriteInputChecked}}") ? "Desfavoritar" : "Favoritar";
+
+
+        favoriteButton.addEventListener("click", async (event) => {
+            event.preventDefault();
+
+            favoriteInput.checked = !favoriteInput.checked
+
+            createFavoriteEvent(favoriteInput, "{{advertisingId}}");
+        });
+
+
+        function createFavoriteEvent(advertisingFavoriteInput, advertisingId) {
+
+            Swal.fire({
+                text: `Deseja ${advertisingFavoriteInput.checked ? "favoritar" : "desfavoritar"} anúncio?`,
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Confirmar",
+                position: "center"
+            }).then(async (result) => {
+
+                if (result.isConfirmed) {
+
+                    Swal.fire({
+                        title: `${advertisingFavoriteInput.checked ? "Favoritando" : "Desfavoritando"} anúncio...`,
+                        didOpen: async () => {
+                            Swal.showLoading();
+                        },
+                        allowOutsideClick: () => !Swal.isLoading(),
+                    });
+
+
+                    const data = await editFavorite(advertisingFavoriteInput, advertisingId);
+
+                    Swal.fire({
+                        title: data.message,
+                        text: "",
+                        icon: `${data.success == true ? "success" : "error"}`,
+                        position: "center",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    advertisingFavoriteInput.checked = !advertisingFavoriteInput.checked;
+                }
+            });
+
+        }
+
+        async function editFavorite(advertisingFavoriteInput, advertisingId) {
+
+            let checked = advertisingFavoriteInput.checked ? "true" : "false";
+
+            try {
+
+                let response = await fetch("/api/news/favorite", {
+                    method: "POST",
+                    body: JSON.stringify({ advertisingId: advertisingId, favorite: checked }),
+                });
+
+                const data = await response.json();
+                return data;
+            }
+
+            catch (error) {
+                const data = {
+                    success: false,
+                    message: "Erro na conexão. Tente novamente."
+                };
+                return data;
+            }
+        }
+
+
+
+    });
+
+
+</script>

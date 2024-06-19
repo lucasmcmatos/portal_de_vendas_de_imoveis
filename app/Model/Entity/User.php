@@ -35,7 +35,7 @@ class User
 
     public function insert(){
         try {
-            $success = (new Database("user"))->insert([
+            $pdo = (new Database("user"))->insert([
                 "firstName" => $this->firstName,
                 "lastName" => $this->lastName,
                 "email" => $this->email,
@@ -50,10 +50,20 @@ class User
                 "privilege" => $this->privilege,
             ]);
 
+
+            if($pdo == false){
+                return [
+                    "success" => false,
+                    "message" => "Falha ao cadastrar usuário!"
+                ];
+            }
+
             return [
-                "success" => $success,
+                "success" => true,
+                "pdo" => $pdo,
                 "message" => "Usuário cadastrado com sucesso!"
             ];
+
         } catch (PDOException $err) {
             return [
                 "success" => false,

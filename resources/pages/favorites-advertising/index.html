@@ -1,0 +1,363 @@
+
+
+    <style>
+        @font-face {
+            font-family: 'Sensation';
+            src: url('../../fonts/Sansation.ttf') format('truetype');
+        }
+
+        .cf-Input {
+            border: 0;
+            height: 45px;
+            width: auto;
+            margin: 0;
+            color: transparent;
+            cursor: pointer;
+        }
+        .cf-Input::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        .cf-Input::before {
+            content: 'Escolher arquivos';
+            display: inline-block;
+            background: #DCCCC3;
+            color: #000000;
+            border: 1px solid #00000027;
+            border-radius: 5px;
+            padding: 4px 8px;
+            outline: none;
+            white-space: nowrap;
+            cursor: pointer;
+            transform: translateX(-10px);
+        }
+        .cf-Input:hover::before {
+            background: #00000027;
+        }
+        .cf-Input:active::before {
+            background: #0000004d;
+        }
+        .cf-Input:focus::before {
+            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+        }
+        
+        #submitButton {
+            background-color: #DCCCC3;
+            border: 1px solid #00000027;
+            color: #000000;
+            position: relative;
+            padding: 4px 8px;
+            transition: padding 0.3s;
+            border-radius: 5px;
+        }
+    
+        /* Estilo para o ícone dentro do botão */
+        #submitButton .fas {
+            margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+        }
+    
+        /* Estilo do botão no hover */
+        #submitButton:hover {
+            background-color: #b1a39c; /* Nova cor de fundo no hover */
+            color: #ffffff;
+            padding: 6px 10px; /* Cor do texto no hover */
+        }
+    
+        /* Efeito de elevação no hover */
+        #submitButton:hover::before {
+            content: '';
+            position: absolute;
+            top: -5px; /* Ajuste a posição conforme necessário */
+            left: -5px; /* Ajuste a posição conforme necessário */
+            right: -5px; /* Ajuste a posição conforme necessário */
+            bottom: -5px; /* Ajuste a posição conforme necessário */
+            border: 2px solid #00000027;
+            z-index: -1;
+            transition: all 0.3s;
+        }
+
+    </style>
+
+<     <!-- Begin Page Content -->
+                <div class="d-flex flex-column flex-xl-row p-4 align-items-start">
+
+                    <div class="col-12  container">
+                        <div class="col-12 row">
+                            
+                            <!-- Lista de Anúncios -->
+                            <div class="col-12 ml-xl-4 p-4 mt-4 d-flex flex-column align-items-between" style="border-radius:10px; border:1px solid #00000027;">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h1 style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:30px; margin: 0;">Meus Anúncios Favoritos</h1>                             
+                                </div>
+
+                                <ul class="list-unstyled " >
+                                    <!-- Anúncio 1 -->
+
+                                    <li class="nav-item">
+                                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                                            <div class="row no-gutters">
+                                                <!-- Espaço para a foto -->
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('/sb-admin-2/img/imagem_1.jpeg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8 position-relative">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+                                    
+                                                        <!-- Botão de desfavoritar -->
+                                                        <button class="btn btn-light mt-2" style="border: 1px solid #00000027;" onclick="toggleFavorite(this)">
+                                                            <i class="fas fa-heart mr-1"></i> Desfavoritar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                                            <div class="row no-gutters">
+                                                <!-- Espaço para a foto -->
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('/sb-admin-2/img/imagem_2.jpeg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8 position-relative">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+                                    
+                                                        <!-- Botão de desfavoritar -->
+                                                        <button class="btn btn-light mt-2" style="border: 1px solid #00000027;" onclick="toggleFavorite(this)">
+                                                            <i class="fas fa-heart mr-1"></i> Desfavoritar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                                            <div class="row no-gutters">
+                                                <!-- Espaço para a foto -->
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('/sb-admin-2/img/imagem_3.jpeg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8 position-relative">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+                                    
+                                                        <!-- Botão de desfavoritar -->
+                                                        <button class="btn btn-light mt-2" style="border: 1px solid #00000027;" onclick="toggleFavorite(this)">
+                                                            <i class="fas fa-heart mr-1"></i> Desfavoritar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                                            <div class="row no-gutters">
+                                                <!-- Espaço para a foto -->
+                                                <div class="col-md-4">
+                                                    <div class="card-img" style="background-image: url('/sb-admin-2/img/imagem_5.jpeg');background-size: cover;background-position: center; height: 100%;"></div>
+                                                </div>
+                                                <div class="col-md-8 position-relative">
+                                                    <div class="card-body">
+                                                        <!-- Título -->
+                                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+                                                        
+                                                        <!-- Valor do Anúncio -->
+                                                        <div class="mb-2">
+                                                            <strong>Valor:</strong> R$ 500.000,00
+                                                        </div>
+                                                        
+                                                        <!-- Endereço -->
+                                                        <div class="mb-2">
+                                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                                        </div>
+                                                        
+                                                        <!-- Descrição -->
+                                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto ou serviço anunciado.</p>
+                                    
+                                                        <!-- Botão de desfavoritar -->
+                                                        <button class="btn btn-light mt-2" style="border: 1px solid #00000027;" onclick="toggleFavorite(this)">
+                                                            <i class="fas fa-heart mr-1"></i> Desfavoritar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    
+                                    <!-- Adicione mais anúncios conforme necessário -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+
+    <script>
+        document.getElementById('imagensAnuncio').addEventListener('change', function(event) {
+            const files = event.target.files;
+            const previewContainer = document.getElementById('imagensPreview');
+            previewContainer.innerHTML = ''; // Limpa a pré-visualização anterior
+    
+            // Verifica se o número de arquivos está entre 1 e 5
+            if (files.length < 1 || files.length > 5) {
+                alert('Selecione de 1 a 5 imagens.');
+                event.target.value = ''; // Limpa a seleção do arquivo
+                return;
+            }
+    
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+    
+                reader.onload = function() {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = reader.result;
+                    imgElement.style.maxWidth = '100px'; // Ajuste o tamanho conforme necessário
+                    imgElement.style.marginRight = '10px'; // Espaçamento entre imagens
+                    previewContainer.appendChild(imgElement);
+                };
+    
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function togglePopup(button) {
+            const popup = button.nextElementSibling;
+            popup.style.display = popup.style.display === 'none' || !popup.style.display ? 'block' : 'none';
+            
+            // Hide other popups when clicking on a new one
+            document.querySelectorAll('.popup-options').forEach(el => {
+                if (el !== popup) el.style.display = 'none';
+            });
+        }
+    
+        // Hide popup when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav-item')) {
+                document.querySelectorAll('.popup-options').forEach(el => el.style.display = 'none');
+            }
+        });
+
+        // Suponha que você tenha URLs das imagens do banco de dados (exemplo)
+    // Array de URLs das imagens do banco de dados (exemplo)
+    var imagensSalvas = [
+    null,
+    null,
+    null,
+    null, // Se não houver imagem, deixe como null
+    null  // Se não houver imagem, deixe como null
+    ];
+
+    // Função para carregar imagens salvas nos previews
+    function carregarImagensSalvas() {
+    for (var i = 0; i < imagensSalvas.length; i++) {
+        var url = imagensSalvas[i];
+        if (url) {
+            exibirImagemNoPreview(url, i + 1); // i + 1 para corresponder ao ID correto do preview
+        }
+    }
+    }
+
+    // Função para exibir uma imagem no preview
+    function exibirImagemNoPreview(url, id) {
+    var img = document.createElement('img');
+    img.src = url;
+    img.style.maxWidth = '100px'; // Ajuste o tamanho conforme necessário
+
+    var previewDiv = document.getElementById('preview' + id);
+    previewDiv.innerHTML = ''; // Limpa o conteúdo anterior
+    previewDiv.appendChild(img);
+    }
+
+    // Função para lidar com a seleção de arquivo e exibir a imagem no preview
+    function handleFileSelect(event, id) {
+    var input = event.target;
+    var file = input.files[0];
+
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            exibirImagemNoPreview(e.target.result, id);
+        };
+        reader.readAsDataURL(file);
+    } else {
+        // Se o usuário cancelar a seleção do arquivo, limpe o preview
+        var previewDiv = document.getElementById('preview' + id);
+        previewDiv.innerHTML = '';
+    }
+    }
+
+    // Adicionar eventos de mudança para cada input de imagem
+    document.getElementById('imagem1').addEventListener('change', function(event) {
+    handleFileSelect(event, 1);
+    });
+    document.getElementById('imagem2').addEventListener('change', function(event) {
+    handleFileSelect(event, 2);
+    });
+    document.getElementById('imagem3').addEventListener('change', function(event) {
+    handleFileSelect(event, 3);
+    });
+    document.getElementById('imagem4').addEventListener('change', function(event) {
+    handleFileSelect(event, 4);
+    });
+    document.getElementById('imagem5').addEventListener('change', function(event) {
+    handleFileSelect(event, 5);
+    });
+
+    // Chama a função para carregar imagens salvas ao carregar a página
+    document.addEventListener('DOMContentLoaded', function() {
+    carregarImagensSalvas();
+    });
+    </script>
+

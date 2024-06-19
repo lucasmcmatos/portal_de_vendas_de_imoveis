@@ -1,0 +1,477 @@
+
+<style>
+    @font-face {
+        font-family: 'Sensation';
+        src: url('../../fonts/Sansation.ttf') format('truetype');
+    }
+
+
+
+    #register-ZIP-code-container, 
+    #edit-ZIP-Code-Container {
+        width: 50%; 
+        justify-content: center;
+        box-sizing: border-box;
+        padding-right: 1vw;
+        column-gap: 0px;
+    }
+
+ 
+
+    .cf-Input {
+        border: 0;
+        height: 45px;
+        width: auto;
+        margin: 0;
+        color: transparent;
+        cursor: pointer;
+    }
+
+    .cf-Input::-webkit-file-upload-button {
+        visibility: hidden;
+    }
+
+    .cf-Input::before {
+        content: 'Escolher arquivos';
+        display: inline-block;
+        background: #DCCCC3;
+        color: #000000;
+        border: 1px solid #00000027;
+        border-radius: 5px;
+        padding: 4px 8px;
+        outline: none;
+        white-space: nowrap;
+        cursor: pointer;
+        transform: translateX(-10px);
+    }
+
+    .cf-Input:hover::before {
+        background: #00000027;
+    }
+
+    .cf-Input:active::before {
+        background: #0000004d;
+    }
+
+    .cf-Input:focus::before {
+        box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+    }
+
+    #submitButton {
+        background-color: #DCCCC3;
+        border: 1px solid #00000027;
+        color: #000000;
+        position: relative;
+        padding: 4px 8px;
+        transition: padding 0.3s;
+        border-radius: 5px;
+    }
+
+    /* Estilo para o ícone dentro do botão */
+    #submitButton .fas {
+        margin-right: 8px;
+        /* Espaçamento entre o ícone e o texto */
+    }
+
+    /* Estilo do botão no hover */
+    #submitButton:hover {
+        background-color: #b1a39c;
+        /* Nova cor de fundo no hover */
+        color: #ffffff;
+        padding: 6px 10px;
+        /* Cor do texto no hover */
+    }
+
+    /* Efeito de elevação no hover */
+    #submitButton:hover::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        /* Ajuste a posição conforme necessário */
+        left: -5px;
+        /* Ajuste a posição conforme necessário */
+        right: -5px;
+        /* Ajuste a posição conforme necessário */
+        bottom: -5px;
+        /* Ajuste a posição conforme necessário */
+        border: 2px solid #00000027;
+        z-index: -1;
+        transition: all 0.3s;
+    }
+</style>
+
+
+
+
+
+
+
+<!-- Begin Page Content -->
+<div class="d-flex flex-column flex-xl-row p-4 align-items-start">
+
+    <div class="col-12  container">
+        <div class="col-12 row">
+
+            <!-- Lista de Anúncios -->
+            <div class="col-12 ml-xl-4 p-4 mt-4 d-flex flex-column align-items-between"
+                style="border-radius:10px; border:1px solid #00000027;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 style="color: #000000; font-weight:700; font-family:'Sensation'; font-size:30px; margin: 0;">
+                        Meus Anúncios</h1>
+                    <button class="btn btn-light" style="background-color: #DCCCC3; border: 1px solid #00000027;"
+                        data-toggle="modal" data-target="#register-modal">
+                        <i class="fas fa-plus fa-sm mr-2" style="color: #00000098;"></i>Cadastrar Novo Anúncio
+                    </button>
+                </div>
+
+                <ul class="list-unstyled ">
+                    <!-- Anúncio 1 -->
+
+                    <li class="nav-item">
+                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/imagem_3.jpeg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 position-relative">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 1</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 1. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <div class="btn btn-primary mt-2"
+                                            style="border: 1px solid #00000027; background-color: rgb(2, 161, 2)">
+                                            <span>Publicado</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botão de três pontinhos -->
+                                    <button class="btn btn-link text-dark position-absolute"
+                                        style="top: 10px; right: 10px;" onclick="togglePopup(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+
+                                    <!-- Popup com as opções -->
+                                    <div class="popup-options position-absolute bg-white border rounded shadow-sm p-2"
+                                        style="display: none; top: 40px; right: 10px;">
+                                        <button class="btn btn-sm btn-light d-block w-100 mb-1" data-toggle="modal"
+                                            data-target="#editModal">Editar</button>
+                                        <button class="btn btn-sm btn-light d-block w-100">Deletar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/imagem_1.jpeg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 position-relative">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 2</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 2. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <div class="btn btn-primary mt-2"
+                                            style="border: 1px solid #00000027; background-color: rgb(2, 161, 2)">
+                                            <span>Publicado</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botão de três pontinhos -->
+                                    <button class="btn btn-link text-dark position-absolute"
+                                        style="top: 10px; right: 10px;" onclick="togglePopup(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+
+                                    <!-- Popup com as opções -->
+                                    <div class="popup-options position-absolute bg-white border rounded shadow-sm p-2"
+                                        style="display: none; top: 40px; right: 10px;">
+                                        <button class="btn btn-sm btn-light d-block w-100 mb-1" data-toggle="modal"
+                                            data-target="#editModal">Editar</button>
+                                        <button class="btn btn-sm btn-light d-block w-100">Deletar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/imagem_2.jpeg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 position-relative">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 3</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 3. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <div class="btn btn-primary mt-2"
+                                            style="border: 1px solid #00000027; background-color: rgb(2, 161, 2)">
+                                            <span>Publicado</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botão de três pontinhos -->
+                                    <button class="btn btn-link text-dark position-absolute"
+                                        style="top: 10px; right: 10px;" onclick="togglePopup(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+
+                                    <!-- Popup com as opções -->
+                                    <div class="popup-options position-absolute bg-white border rounded shadow-sm p-2"
+                                        style="display: none; top: 40px; right: 10px;">
+                                        <button class="btn btn-sm btn-light d-block w-100 mb-1" data-toggle="modal"
+                                            data-target="#editModal">Editar</button>
+                                        <button class="btn btn-sm btn-light d-block w-100">Deletar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/imagem_3.jpeg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 position-relative">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 4</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 4. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <div class="btn btn-primary mt-2"
+                                            style="border: 1px solid #00000027; background-color: rgb(2, 161, 2)">
+                                            <span>Publicado</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botão de três pontinhos -->
+                                    <button class="btn btn-link text-dark position-absolute"
+                                        style="top: 10px; right: 10px;" onclick="togglePopup(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+
+                                    <!-- Popup com as opções -->
+                                    <div class="popup-options position-absolute bg-white border rounded shadow-sm p-2"
+                                        style="display: none; top: 40px; right: 10px;">
+                                        <button class="btn btn-sm btn-light d-block w-100 mb-1" data-toggle="modal"
+                                            data-target="#editModal">Editar</button>
+                                        <button class="btn btn-sm btn-light d-block w-100">Deletar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/imagem_6.jpeg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 position-relative">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 5</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 5. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <div class="btn btn-primary mt-2"
+                                            style="border: 1px solid #00000027; background-color: rgb(2, 161, 2)">
+                                            <span>Publicado</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botão de três pontinhos -->
+                                    <button class="btn btn-link text-dark position-absolute"
+                                        style="top: 10px; right: 10px;" onclick="togglePopup(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+
+                                    <!-- Popup com as opções -->
+                                    <div class="popup-options position-absolute bg-white border rounded shadow-sm p-2"
+                                        style="display: none; top: 40px; right: 10px;">
+                                        <button class="btn btn-sm btn-light d-block w-100 mb-1" data-toggle="modal"
+                                            data-target="#editModal">Editar</button>
+                                        <button class="btn btn-sm btn-light d-block w-100">Deletar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="card d-block bg-light text-decoration-none text-dark mb-3">
+                            <div class="row no-gutters">
+                                <!-- Espaço para a foto -->
+                                <div class="col-md-4">
+                                    <div class="card-img"
+                                        style="background-image: url('/sb-admin-2/img/imagem_1.jpeg');background-size: cover;background-position: center; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 position-relative">
+                                    <div class="card-body">
+                                        <!-- Título -->
+                                        <h5 class="card-title mb-3">Título do Anúncio 6</h5>
+
+                                        <!-- Valor do Anúncio -->
+                                        <div class="mb-2">
+                                            <strong>Valor:</strong> R$ 500.000,00
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="mb-2">
+                                            <strong>Endereço:</strong> Av. Principal, 1234, Cidade, Estado
+                                        </div>
+
+                                        <!-- Descrição -->
+                                        <p class="card-text mb-0">Descrição breve do anúncio 6. Detalhes sobre o produto
+                                            ou serviço anunciado.</p>
+
+                                        <div class="btn btn-primary mt-2"
+                                            style="border: 1px solid #00000027; background-color: rgb(2, 161, 2)">
+                                            <span>Publicado</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botão de três pontinhos -->
+                                    <button class="btn btn-link text-dark position-absolute"
+                                        style="top: 10px; right: 10px;" onclick="togglePopup(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+
+                                    <!-- Popup com as opções -->
+                                    <div class="popup-options position-absolute bg-white border rounded shadow-sm p-2"
+                                        style="display: none; top: 40px; right: 10px;">
+                                        <button class="btn btn-sm btn-light d-block w-100 mb-1" data-toggle="modal"
+                                            data-target="#editModal">Editar</button>
+                                        <button class="btn btn-sm btn-light d-block w-100">Deletar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+
+
+                    <!-- Adicione mais anúncios conforme necessário -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+
+<script>
+    function togglePopup(button) {
+        const popup = button.nextElementSibling;
+        popup.style.display = popup.style.display === 'none' || !popup.style.display ? 'block' : 'none';
+
+        // Hide other popups when clicking on a new one
+        document.querySelectorAll('.popup-options').forEach(el => {
+            if (el !== popup) el.style.display = 'none';
+        });
+    }
+
+    // Hide popup when clicking outside
+    document.addEventListener('click', function (event) {
+        if (!event.target.closest('.nav-item')) {
+            document.querySelectorAll('.popup-options').forEach(el => el.style.display = 'none');
+        }
+    });
+</script>
+
+
+{{registerForm}}
+
+
+{{editForm}}

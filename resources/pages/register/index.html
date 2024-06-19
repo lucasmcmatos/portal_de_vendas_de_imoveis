@@ -57,7 +57,7 @@
 
     <!-- Font Awesome-->
     <script src="https://kit.fontawesome.com/7b6d6bdbf9.js" crossorigin="anonymous"></script>
- 
+
     <!--Sweet alert 2-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -75,7 +75,8 @@
 
                 <div class="row pl-2 pr-2 pb-0">
 
-                    <div class="col-12 col-lg-6 p-0 d-flex align-items-center justify-content-center" style="background-color:#DCCCC3;">
+                    <div class="col-12 col-lg-6 p-0 d-flex align-items-center justify-content-center"
+                        style="background-color:#DCCCC3;">
                         <img src="/sb-admin-2/img/icone-image.svg" width="70%">
                     </div>
 
@@ -98,7 +99,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-8  mb-2 mb-sm-0">
-                                        <input type="email" class="form-control " id="email" name="email"
+                                        <input type="text" class="form-control " id="email" name="email"
                                             autocomplete="off" placeholder="Email">
                                     </div>
 
@@ -116,7 +117,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control " id="confirmPassword"
-                                            placeholder="Repita a senha">
+                                            name="confirmPassword" placeholder="Repita a senha">
                                     </div>
                                 </div>
 
@@ -153,9 +154,13 @@
 
                             <hr class="w-50">
 
-                            <div class="text-center ">
-                                <a class="small" href="login.html" style="color: #937F74;">Ja possui uma conta?
+                            <div class="text-center">
+                                <a class="small" href="/login" style="color: #937F74;">Ja possui uma conta?
                                     Login!</a>
+                            </div>
+
+                            <div class="text-center">
+                                <a class="small" href="/" style="color: #937F74;">Voltar para o início!</a>
                             </div>
 
                         </div>
@@ -177,6 +182,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/sb-admin-2/js/sb-admin-2.min.js"></script>
+
 
 
 
@@ -202,6 +208,8 @@
                 Swal.fire({
                     title: response.message,
                     icon: "success",
+                }).then(()=> {
+                    window.location.href = "/login";
                 });
 
             } else {
@@ -217,6 +225,7 @@
 
 
         async function registerUser() {
+
             const form = document.querySelector("#register-user-form");
             const formData = new FormData(form);
 

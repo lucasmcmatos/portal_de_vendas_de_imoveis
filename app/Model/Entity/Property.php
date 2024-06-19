@@ -18,7 +18,7 @@ class Property {
     public int $furnished;
     public int $pool;
     public int $barbecue;
-    public int $sportsCount;
+    public int $sportsCourt;
     public int $address;
 
 
@@ -27,7 +27,7 @@ class Property {
 
     public function insert() {
         try {
-            $success = (new Database("property"))->insert([
+            $pdo = (new Database("property"))->insert([
                 "builtUpArea" => $this->builtUpArea,
                 "bathNumber" => $this->bathNumber,
                 "roomNumber" => $this->roomNumber,
@@ -37,13 +37,21 @@ class Property {
                 "furnished" => $this->furnished,
                 "pool" => $this->pool,
                 "barbecue" => $this->barbecue,
-                "sportsCount" => $this->sportsCount,
+                "sportsCourt" => $this->sportsCourt,
                 "address" => $this->address,
             ]);
 
+            if($pdo == false){
+                return [
+                    "success" => false,
+                    "message" => "Falha ao cadastrar propriedade",
+                ];
+            }
+
             return [
-                "success" => $success,
-                "message" => ""
+                "success" => true,
+                "pdo" => $pdo,
+                "message" => "Propriedade cadastrada com sucesso!"
             ];
         } catch (PDOException $err) {
             return [

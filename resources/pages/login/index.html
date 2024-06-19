@@ -114,11 +114,14 @@
                             <hr class="w-50">
                             
                             <div class="text-center ">
-                                <a class="small" href="login.html" style="color: #937F74;">Ainda não possui conta? Cadastrar!</a>
+                                <a class="small" href="/register" style="color: #937F74;">Ainda não possui conta? Cadastrar!</a>
                             </div>
                             
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html" style="color: #937F74;">Esqueceu a senha?</a>
+                                <a class="small" href="/forgot-password" style="color: #937F74;">Esqueceu a senha?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="/" style="color: #937F74;">Volta para o início!</a>
                             </div>
                             
 
@@ -141,6 +144,35 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/sb-admin-2/js/sb-admin-2.min.js"></script>
+
+
+    <!--Mask-->
+
+
+    <script>
+
+        //------------------- Identifier ------------------//
+        document.getElementById("identifier").addEventListener("input", function () {
+        if (this.value.length > 100) {
+            this.value = this.value.substring(0, 100);
+        }
+
+        const cursorPosition = this.selectionStart;
+
+        const identifierRegex = /[^a-zA-Z0-9@_.-]/g;
+
+        if(identifierRegex.test(this.value)){
+            this.value = this.value.replace(identifierRegex, "");
+            this.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
+            return;
+        }
+        this.setSelectionRange(cursorPosition, cursorPosition);
+    });
+    
+
+
+    </script>
+
 
     <!--Submit Form-->
     <script>

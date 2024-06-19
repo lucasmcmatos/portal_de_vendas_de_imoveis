@@ -22,7 +22,7 @@ class Advertising {
 
     public function insert() {
         try {
-            $success = (new Database("advertising"))->insert([
+            $pdo = (new Database("advertising"))->insert([
                 "property" => $this->property,
                 "user" => $this->user,
                 "title" => $this->title,
@@ -34,9 +34,17 @@ class Advertising {
                 "businessStatus" => $this->businessStatus
             ]);
 
+            if($pdo == false){
+                return [
+                    "success" => false,
+                    "message" => "Falha ao cadastrar anúncio",
+                ];
+            }
+
             return [
-                "success" => $success,
-                "message" => ""
+                "success" => true,
+                "pdo" => $pdo,
+                "message" => "Anúncio cadastrado com sucesso!"
             ];
         } catch (PDOException $err) {
             return [
@@ -70,6 +78,148 @@ class Advertising {
                 "message" => $err->getMessage(),
             ];
         }
+    }
+
+
+
+    static public function getOpenAdvertisingInformationsById($id){
+
+        try {
+
+            $columns = [
+                "advertising.id as advertisingId",
+                "title", 
+                "description",
+                "imagePath",
+                "businessValue",
+                "publiDate",
+                "business_type.type as businessTypeName",
+                "business_status.status as businessStatusName",
+                "builtUpArea",
+                "bathNumber",
+                "roomNumber",
+                "parkingSpaces",
+                "property_type.type as propertyTypeName",
+                "incidence",
+                "furnished",
+                "pool",
+                "barbecue",
+                "sportsCourt",
+                "municipality.name as municipality",
+                "neighborhood",
+                "street",
+                "number",
+                "ZIPcode",
+                "complement",
+                "state.name as state",
+                "firstName",
+                "lastName",
+                "email",
+                "phone",
+                "instagram",
+                "whatsapp"
+            ];
+
+
+            if($advertisingObjectsList = (
+                new Database("advertising"))->select(
+                $columns, 
+                "advertising.id=?", 
+                [$id], 
+                "",
+                "JOIN business_type ON advertising.businessType = business_type.id
+                JOIN business_status ON advertising.businessStatus = business_status.id
+                JOIN user ON advertising.user = user.id
+                JOIN property ON advertising.property = property.id
+                JOIN property_type ON property.propertyType = property_type.id
+                JOIN solar_incidence ON property.solarIncidence = solar_incidence.id
+                JOIN address ON property.address = address.id
+                JOIN municipality ON address.municipality = municipality.code
+                JOIN state ON municipality.state = state.code"
+
+                )
+            ) {
+
+                return [
+                    "success" => true,
+                    "message" => "",
+                    "value" => $advertisingObjectsList,
+                ];
+            }
+
+
+
+            return [
+                "success" => false,
+                "message" => "Falha ao encontrar anúncios.",
+            ];
+
+         } catch (PDOException $err) {
+             return [
+                 "success" => false,
+                 "message" => $err->getMessage(),
+             ];
+         }
+
+    }
+
+
+
+
+    
+
+
+    static public function getPlatformAdvertisingsCardInformation() {
+         try {
+
+            $columns = [
+                "advertising.id as id",
+                "title", 
+                "description",
+                "imagePath",
+                "businessValue",
+                "street",
+                "number",
+                "municipality.name as municipality",
+                "state.name as state"
+            ];
+
+
+            if($advertisingObjectsList = (
+                new Database("advertising"))->select($columns, 
+                "", 
+                [], 
+                "ORDER BY publiDate DESC",
+
+                "JOIN property ON advertising.property = property.id
+                JOIN address ON property.address = address.id
+                JOIN municipality ON address.municipality = municipality.code
+                JOIN state ON municipality.state = state.code"
+
+                )
+            ) {
+
+                return [
+                    "success" => true,
+                    "message" => "",
+                    "value" => $advertisingObjectsList,
+                ];
+            }
+
+
+
+            return [
+                "success" => false,
+                "message" => "Falha ao encontrar anúncios.",
+            ];
+
+         } catch (PDOException $err) {
+             return [
+                 "success" => false,
+                 "message" => $err->getMessage(),
+             ];
+         }
+
     }
 
 
